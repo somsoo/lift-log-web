@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>서비스 소개 & 철학 | Lift Log Web - 무서버 웨이트 운동 기록기</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col p-6 sm:p-12 antialiased">
+  <main class="max-w-3xl mx-auto w-full bg-slate-900 border border-slate-800 rounded-3xl p-8 sm:p-12 shadow-2xl space-y-8 flex-1">
+    <a href="index.html" class="inline-flex items-center gap-2 text-lime-400 font-bold hover:underline text-sm">
+      <i class="fa-solid fa-arrow-left"></i> 운동 기록기로 돌아가기
+    </a>
+    
+    <div class="space-y-3">
+      <h1 class="text-2xl sm:text-3xl font-black text-white">🏋️ Hevy 대안! 무서버 로컬퍼스트 웨이트 운동 기록기</h1>
+      <p class="text-sm text-slate-400 leading-relaxed">루틴 개수 제한도, 불필요한 회원가입도 없습니다. 브라우저에서 0초 만에 세트를 기록하세요.</p>
+    </div>
+
+    <section class="space-y-4 text-sm text-slate-300 leading-relaxed border-t border-slate-800 pt-6">
+      <h2 class="text-lg font-bold text-lime-400">1. 왜 Lift Log Web인가요?</h2>
+      <p>기존 모바일 운동 기록 앱(Hevy 등)은 무료 사용자에게 루틴 3개 제한을 걸거나 비싼 월간/연간 구독을 요구합니다. 또한 세트 간 좁은 화면으로 인해 오타가 나기 쉽습니다.</p>
+      <p><strong>Lift Log Web</strong>은 스마트폰, 태블릿, PC 브라우저 어디서나 <strong>무제한 루틴 무료</strong>, <strong>원터치 세트 복사</strong>, <strong>1RM Epley 공식 자동 계산</strong>을 지원하는 100% 클라이언트 로컬퍼스트 웹앱입니다.</p>
+    </section>
+
+    <section class="space-y-4 text-sm text-slate-300 leading-relaxed border-t border-slate-800 pt-6">
+      <h2 class="text-lg font-bold text-lime-400">2. 100% 브라우저 IndexedDB 영구 저장</h2>
+      <p>작성하신 모든 운동 세션, 세트 수, 중량, 1RM 기록은 중앙 서버로 전송되지 않고 사용자의 기기 브라우저(IndexedDB / localStorage)에만 저장됩니다.</p>
+      <ul class="list-disc list-inside space-y-1 text-slate-400">
+        <li>개인정보 유출 및 해킹 위험 0%</li>
+        <li>헬스장 오프라인(비행기 모드/Wi-Fi 불통) 환경에서도 완벽 작동</li>
+        <li>원클릭 JSON 데이터 전체 백업 및 복원 지원</li>
+      </ul>
+    </section>
+
+    <div class="pt-6 border-t border-slate-800 flex justify-between items-center text-xs text-slate-500">
+      <span>© 2026 Lift Log Web. Zero-Server Local-First Architecture.</span>
+      <a href="privacy.html" class="text-lime-400 hover:underline">개인정보처리방침 →</a>
+    </div>
+  </main>
+</body>
+</html>

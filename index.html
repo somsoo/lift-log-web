@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>웨이트 운동 기록기 | 세트·무게·1RM 계산·휴식 타이머 무료 로컬 트래커 (Lift Log Web)</title>
+  <meta name="description" content="Hevy 무료 대안! 루틴 무제한 무료 생성, 세트별 무게·횟수 빠른 입력, Epley 1RM 자동 계산, 휴식 타이머, 100% 브라우저 IndexedDB 영구 저장 웨이트 트레이닝 일지.">
+  <link rel="canonical" href="https://lift-log-web.enjoy-onepage.com/">
+  
+  <meta property="og:title" content="Lift Log Web - 광고와 루틴 제한 없는 무료 웨이트 운동 기록기">
+  <meta property="og:description" content="서버 전송 0%! 헬스장 오프라인에서도 즉시 기록하는 세트/랩/1RM 자동 계산 트래커.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://lift-log-web.enjoy-onepage.com/">
+  
+  <link rel="icon" href="favicon.ico">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Google AdSense 비동기 로더 (No-Duplicate-Push 헌법 준수) -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2228289204702106" crossorigin="anonymous"></script>
+
+  <style>
+    .set-completed { background-color: rgba(132, 204, 22, 0.15); border-color: #84cc16 !important; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 antialiased min-h-screen flex flex-col font-sans">
+
+  <!-- 상단 슬림 띠배너 (Top Slim Banner: 3824727725, 50~60px 고정) -->
+  <div class="manual-ad-box ad-top-banner w-full max-w-5xl mx-auto my-2 text-center overflow-hidden min-h-[50px] max-h-[60px]">
+    <ins class="adsbygoogle"
+         style="display:block; min-height:50px; max-height:60px;"
+         data-ad-client="ca-pub-2228289204702106"
+         data-ad-slot="3824727725"
+         data-ad-format="horizontal"
+         data-full-width-responsive="false"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <!-- 메인 래퍼 (Double-Nesting 금지, 루트 단일 컨테이너 선언) -->
+  <main class="w-full max-w-5xl mx-auto bg-slate-900 border border-slate-800 rounded-3xl shadow-2xl overflow-hidden mb-8 flex-1">
+    
+    <!-- 네비게이션 헤더 & 프라이버시 배지 -->
+    <header class="border-b border-slate-800 px-6 py-6 sm:px-10 flex flex-col md:flex-row items-center justify-between gap-4 bg-gradient-to-b from-slate-900 to-slate-950">
+      <div class="flex items-center gap-3.5 text-center md:text-left">
+        <div class="w-12 h-12 rounded-2xl bg-lime-500 text-slate-950 flex items-center justify-center text-2xl shadow-lg shadow-lime-500/20 shrink-0 font-black">
+          <i class="fa-solid fa-dumbbell"></i>
+        </div>
+        <div>
+          <div class="flex items-center gap-2 justify-center md:justify-start">
+            <h1 class="text-xl sm:text-2xl font-extrabold text-white tracking-tight">Lift Log Web</h1>
+            <span class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-lime-950 text-lime-400 border border-lime-800">무제한 루틴 무료</span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-400 mt-0.5">Hevy 구독 피로 없는 100% 브라우저 로컬 웨이트 트레이닝 일지</p>
+        </div>
+      </div>
+
+      <!-- 상단 액션 버튼 그룹 (PRO 모달 & 배지) -->
+      <div class="flex items-center gap-2.5">
+        <div class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-lime-950/60 border border-lime-800 text-lime-400 text-xs font-bold">
+          <i class="fa-solid fa-shield-halved text-lime-400"></i>
+          <span>100% Local-First</span>
+        </div>
+        <button id="liftProBtn" onclick="openLiftProModal()" class="px-3.5 py-1.5 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-slate-950 text-xs font-bold rounded-xl shadow-sm transition flex items-center gap-1.5">
+          <i class="fa-solid fa-crown text-slate-950"></i>
+          <span id="liftProBtnText">PRO 라이선스</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- 안심 배지 바 -->
+    <div class="bg-lime-950/30 border-b border-lime-900/40 px-6 py-2.5 text-xs text-lime-200 flex items-center justify-between flex-wrap gap-2">
+      <div class="flex items-center gap-2">
+        <i class="fa-solid fa-bolt text-lime-400"></i>
+        <span><strong>오프라인 완벽 보장:</strong> 헬스장 데이터 불통 시에도 100% 작동 · 루틴 갯수 무제한 평생 무료</span>
+      </div>
+      <a href="privacy.html" class="underline hover:text-lime-300 font-semibold text-[11px]">로컬 보안 보증서 →</a>
+    </div>
+
+    <!-- LOGIC START -->
+    <!-- PC 1:1 좌우 2단 대칭형 그리드 (lg:grid-cols-12 좌 6열 : 우 6열 sticky) -->
+    <div class="p-6 sm:p-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- 좌측 6열: 운동 선택 및 세트 입력 폼 -->
+      <div class="lg:col-span-6 space-y-6">
+
+        <!-- 세션 컨트롤 및 운동 종목 선택기 -->
+        <div class="p-5 bg-slate-950 border border-slate-800 rounded-3xl space-y-4">
+          <div class="flex items-center justify-between">
+            <h2 class="text-sm font-bold text-white flex items-center gap-2">
+              <i class="fa-solid fa-person-running text-lime-400"></i>
+              <span>운동 종목 선택</span>
+            </h2>
+            <span class="text-[11px] font-mono text-slate-400" id="workoutTimerDisplay">경과 시간: 00:00</span>
+          </div>
+
+          <!-- 부위 탭 & 종목 선택 -->
+          <div class="space-y-3">
+            <div class="flex gap-1.5 overflow-x-auto pb-1 text-xs">
+              <button type="button" onclick="selectMuscle('chest')" class="muscle-tab px-3 py-1.5 rounded-xl bg-lime-500 text-slate-950 font-bold shrink-0 transition" data-target="chest">가슴</button>
+              <button type="button" onclick="selectMuscle('back')" class="muscle-tab px-3 py-1.5 rounded-xl bg-slate-800 text-slate-300 hover:bg-slate-700 font-bold shrink-0 transition" data-target="back">등</button>
+              <button type="button" onclick="selectMuscle('legs')" class="muscle-tab px-3 py-1.5 rounded-xl bg-slate-800 text-slate-300 hover:bg-slate-700 font-bold shrink-0 transition" data-target="legs">하체</button>
+              <button type="button" onclick="selectMuscle('shoulders')" class="muscle-tab px-3 py-1.5 rounded-xl bg-slate-800 text-slate-300 hover:bg-slate-700 font-bold shrink-0 transition" data-target="shoulders">어깨</button>
+              <button type="button" onclick="selectMuscle('arms')" class="muscle-tab px-3 py-1.5 rounded-xl bg-slate-800 text-slate-300 hover:bg-slate-700 font-bold shrink-0 transition" data-target="arms">팔/복근</button>
+            </div>
+
+            <div class="flex gap-2">
+              <select id="exerciseSelect" onchange="onExerciseChange()" class="flex-1 px-3.5 py-3 bg-slate-900 border border-slate-700 rounded-xl text-xs text-white font-bold outline-none">
+                <!-- JS로 부위별 종목 주입 -->
+              </select>
+              <button type="button" onclick="addCustomExercisePrompt()" class="px-3 py-3 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold rounded-xl shrink-0 transition" title="직접 운동 추가">
+                <i class="fa-solid fa-plus"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 세트 기록 테이블 카드 -->
+        <div class="p-5 bg-slate-950 border border-slate-800 rounded-3xl space-y-4">
+          <div class="flex items-center justify-between">
+            <div>
+              <h3 class="text-sm font-black text-white" id="currentExerciseTitle">벤치프레스 (바벨)</h3>
+              <p class="text-[11px] text-slate-400" id="currentExerciseTarget">가슴 운동 · 바벨</p>
+            </div>
+            <button type="button" onclick="addSetRow()" class="px-3 py-1.5 bg-lime-500 hover:bg-lime-400 text-slate-950 text-xs font-black rounded-xl transition flex items-center gap-1.5 shadow-sm">
+              <i class="fa-solid fa-plus"></i>
+              <span>세트 추가</span>
+            </button>
+          </div>
+
+          <!-- 테이블 헤더 -->
+          <div class="grid grid-cols-12 gap-2 text-[11px] font-mono font-bold text-slate-400 px-2 py-1 border-b border-slate-800 text-center">
+            <span class="col-span-2">SET</span>
+            <span class="col-span-3">KG (중량)</span>
+            <span class="col-span-3">REPS (횟수)</span>
+            <span class="col-span-2">1RM</span>
+            <span class="col-span-2">완료</span>
+          </div>
+
+          <!-- 세트 행 컨테이너 -->
+          <div id="setRowsContainer" class="space-y-2">
+            <!-- 동적 세트 행 주입 -->
+          </div>
+
+          <!-- 세트 간 빠른 조정 버튼 바 -->
+          <div class="pt-2 flex items-center justify-between text-xs text-slate-400 border-t border-slate-800">
+            <span class="text-[11px]">이전 세트 자동 복제 및 Epley 1RM 추정</span>
+            <button type="button" onclick="clearCurrentSets()" class="text-rose-400 hover:underline text-[11px] font-semibold">세트 초기화</button>
+          </div>
+        </div>
+
+        <!-- 휴식 타이머 위젯 카드 -->
+        <div class="p-5 bg-slate-950 border border-slate-800 rounded-3xl flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-lime-500/20 text-lime-400 flex items-center justify-center text-lg font-black border border-lime-500/30">
+              <i class="fa-solid fa-stopwatch"></i>
+            </div>
+            <div>
+              <div class="text-xs font-bold text-white">휴식 타이머</div>
+              <div class="text-xl font-mono font-black text-lime-400" id="restTimerDisplay">00:00</div>
+            </div>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <button type="button" onclick="startRestTimer(60)" class="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold rounded-xl transition">60초</button>
+            <button type="button" onclick="startRestTimer(90)" class="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold rounded-xl transition">90초</button>
+            <button type="button" onclick="startRestTimer(120)" class="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold rounded-xl transition">120초</button>
+            <button type="button" onclick="stopRestTimer()" class="px-2.5 py-1.5 bg-rose-950/60 text-rose-300 hover:bg-rose-900/80 border border-rose-800 text-xs font-bold rounded-xl transition">정지</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 우측 6열: 운동 요약 영수증 및 기록 저장 (lg:sticky) -->
+      <div class="lg:col-span-6 lg:sticky lg:top-8 space-y-6">
+        
+        <!-- 실시간 운동 분석 영수증 카드 -->
+        <div class="bg-slate-950 text-slate-100 rounded-3xl p-6 sm:p-7 shadow-2xl border border-slate-800">
+          
+          <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+            <div class="flex items-center gap-2">
+              <div class="w-2.5 h-2.5 rounded-full bg-lime-400 animate-pulse"></div>
+              <h2 class="font-bold text-sm text-slate-200 tracking-wide uppercase">
+                <span id="workoutStatusTitle">오늘의 운동 세션 대시보드</span>
+              </h2>
+            </div>
+            <div class="text-right font-mono text-xs text-lime-400 font-black">
+              <span id="totalSessionCount">총 0개 종목 기록 중</span>
+            </div>
+          </div>
+
+          <!-- 핵심 지표 요약 3단 그리드 -->
+          <div class="grid grid-cols-3 gap-2 my-5">
+            <div class="p-3 bg-slate-900 rounded-2xl border border-slate-800 text-center">
+              <div class="text-[10px] text-slate-500 font-mono">TOTAL VOLUME</div>
+              <div class="text-lg font-black text-lime-400 mt-0.5" id="metricTotalVolume">0 kg</div>
+            </div>
+            <div class="p-3 bg-slate-900 rounded-2xl border border-slate-800 text-center">
+              <div class="text-[10px] text-slate-500 font-mono">TOTAL SETS</div>
+              <div class="text-lg font-black text-white mt-0.5" id="metricTotalSets">0 세트</div>
+            </div>
+            <div class="p-3 bg-slate-900 rounded-2xl border border-slate-800 text-center">
+              <div class="text-[10px] text-slate-500 font-mono">EST. MAX 1RM</div>
+              <div class="text-lg font-black text-amber-400 mt-0.5" id="metricMax1RM">0 kg</div>
+            </div>
+          </div>
+
+          <!-- 오늘 기록된 완료 운동 목록 요약 피드 -->
+          <div class="space-y-2 py-2 border-t border-slate-800">
+            <div class="text-xs font-bold text-slate-300 flex items-center justify-between">
+              <span>완료된 종목별 볼륨 리포트</span>
+              <span class="text-[11px] font-mono text-slate-500">Epley 공식</span>
+            </div>
+            <div id="loggedExercisesList" class="max-h-48 overflow-y-auto space-y-2 pr-1 text-xs">
+              <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800/80 text-center text-slate-500 text-xs">
+                아직 완료된 운동 세트가 없습니다.<br>세트의 '체크' 버튼을 눌러 기록을 확정하세요!
+              </div>
+            </div>
+          </div>
+
+          <!-- 운동 저장 및 세션 완료 버튼 -->
+          <div class="my-4 space-y-2">
+            <button type="button" id="btnFinishSession" onclick="finishCurrentExercise()" class="w-full py-4 bg-lime-500 hover:bg-lime-400 text-slate-950 font-black rounded-2xl transition shadow-lg shadow-lime-950/50 flex items-center justify-center gap-2 active:scale-95 text-sm">
+              <i class="fa-solid fa-check-double"></i>
+              <span id="finishBtnText">현재 운동 완료 및 세션 저장</span>
+            </button>
+          </div>
+
+          <!-- 동적 안전 명세 영수증 -->
+          <div class="py-2 space-y-2 font-mono text-xs border-t border-slate-800">
+            <div class="flex justify-between text-slate-400">
+              <span>STORAGE ENGINE:</span>
+              <span class="text-lime-400 font-bold">100% 브라우저 IndexedDB</span>
+            </div>
+            <div class="flex justify-between text-slate-400">
+              <span>PRIVACY STATUS:</span>
+              <span class="text-emerald-400 font-bold">외부 서버 전송 0% (완전 격리)</span>
+            </div>
+            <div class="flex justify-between text-slate-400">
+              <span>ROUTINE CAPACITY:</span>
+              <span class="text-white font-bold">무제한 무료 (Hevy 3개 제한 없음)</span>
+            </div>
+          </div>
+
+          <!-- 전사 공통 원클릭 결과 복사 & 바이럴 링크 -->
+          <div class="pt-5 border-t border-slate-800 space-y-2.5">
+            <button type="button" id="btnCopyWorkoutSummary" onclick="copyWorkoutSummary()" class="w-full py-3.5 bg-lime-500 hover:bg-lime-400 text-slate-950 font-black rounded-2xl text-xs transition flex items-center justify-center gap-2 shadow-lg shadow-lime-950/40">
+              <i class="fa-solid fa-copy text-slate-950"></i>
+              <span>운동 일지 요약 및 바로가기 클립보드 복사</span>
+            </button>
+
+            <!-- 원클릭 백업 다운로드 & 복원 -->
+            <div class="grid grid-cols-2 gap-2 pt-1">
+              <button type="button" onclick="exportWorkoutJSON()" class="py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold rounded-xl transition flex items-center justify-center gap-1.5">
+                <i class="fa-solid fa-download text-lime-400"></i> JSON 백업
+              </button>
+              <label class="py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold rounded-xl transition flex items-center justify-center gap-1.5 cursor-pointer text-center">
+                <i class="fa-solid fa-upload text-lime-400"></i> 백업 복원
+                <input type="file" id="importJsonInput" accept=".json" class="hidden" onchange="importWorkoutJSON(event)"/>
+              </label>
+            </div>
+          </div>
+
+          <!-- 보안 확인 문구 -->
+          <div class="mt-4 text-center text-[10px] text-slate-500 font-mono">
+            100% CLIENT STORAGE · ZERO SUBSCRIPTION FEES · UNLIMITED ROUTINES
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+    <!-- LOGIC END -->
+
+    <!-- 본문 중간 반응형 배너 (In-Result Slot: 1186914926, 1:1 푸시 규격) -->
+    <div class="manual-ad-box ad-mid-banner w-full max-w-4xl mx-auto my-6 text-center overflow-hidden">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-2228289204702106"
+           data-ad-slot="1186914926"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <!-- E-E-A-T 서브페이지 네비게이션 링크 푸터 -->
+    <footer class="bg-slate-950 border-t border-slate-800 px-6 py-6 text-center text-xs text-slate-500">
+      <div class="max-w-3xl mx-auto flex flex-wrap items-center justify-center gap-4 mb-3 font-medium">
+        <a href="about.html" class="hover:text-lime-400 transition">서비스 소개 & 철학</a>
+        <span class="text-slate-700">·</span>
+        <a href="privacy.html" class="hover:text-lime-400 transition">개인정보처리방침 (로컬 보증서)</a>
+        <span class="text-slate-700">·</span>
+        <a href="terms.html" class="hover:text-lime-400 transition">이용약관</a>
+        <span class="text-slate-700">·</span>
+        <a href="sitemap.xml" class="hover:text-lime-400 transition">사이트맵</a>
+      </div>
+      <p>© 2026 Lift Log Web. All rights reserved. Zero-Server Local-First Architecture.</p>
+    </footer>
+
+  </main>
+
+  <!-- 하단 대형 배너 (푸터 직전: 3416334507, 1:1 푸시 규격) -->
+  <div class="manual-ad-box ad-bottom-banner w-full max-w-5xl mx-auto mb-8 text-center overflow-hidden">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-2228289204702106"
+         data-ad-slot="3416334507"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <!-- Lemon Squeezy PRO 라이선스 등록 모달 -->
+  <div id="liftProModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-slate-900 w-full max-w-md rounded-3xl p-6 sm:p-8 shadow-2xl border border-slate-800 text-center space-y-5 text-slate-100">
+      <div class="w-14 h-14 mx-auto rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-2xl border border-amber-500/30">
+        <i class="fa-solid fa-crown"></i>
+      </div>
+      <div>
+        <h3 class="text-xl font-black text-white">PRO 평생 무광고 라이선스</h3>
+        <p class="text-xs text-slate-400 mt-1">1회 결제로 모든 광고 영구 제거 및 무제한 루틴 평생 소장</p>
+      </div>
+
+      <div class="bg-slate-950/60 border border-slate-800 p-4 rounded-2xl text-left text-xs space-y-1.5 text-slate-300 font-medium">
+        <p>✓ 구글 광고 영구 전면 차단 (운동 집중)</p>
+        <p>✓ 1회 결제 ($4.99 / 약 6,500원, Hevy 월정액 대비 90% 절감)</p>
+        <p>✓ 최대 3대 기기(PC/스마트폰/태블릿) 평생 인증</p>
+      </div>
+
+      <div class="space-y-2">
+        <input type="text" id="liftLicenseKeyInput" placeholder="라이선스 키 입력 (예: PRO-XXXX-XXXX)" class="w-full px-4 py-3 bg-slate-950 border border-slate-700 rounded-xl text-xs font-mono text-center uppercase focus:ring-2 focus:ring-lime-400 outline-none text-white"/>
+        <button type="button" id="btnVerifyLiftLicense" onclick="verifyLiftLicenseKey()" class="w-full py-3 bg-lime-500 hover:bg-lime-400 text-slate-950 text-xs font-bold rounded-xl transition">
+          라이선스 키 인증하기
+        </button>
+      </div>
+
+      <div class="pt-3 border-t border-slate-800 flex flex-col gap-2 text-xs">
+        <a href="https://lemonsqueezy.com" target="_blank" class="text-lime-400 font-bold hover:underline">
+          👉 아직 키가 없으신가요? 평생 이용권 구매하기 ($4.99)
+        </a>
+        <button type="button" onclick="closeLiftProModal()" class="text-slate-400 hover:text-slate-200">닫기</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 전사 공통 원클릭 결과 복사 토스트 알림 컴포넌트 -->
+  <div id="global-ux-toast" style="position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(10px);background:#14532d;color:#86efac;border:1px solid #16a34a;padding:12px 24px;border-radius:9999px;font-size:14px;font-weight:600;box-shadow:0 10px 25px rgba(0,0,0,0.4);z-index:9999;transition:all 0.3s ease;opacity:0;pointer-events:none;">
+    알림 메시지
+  </div>
+
+  <!-- 핵심 클라이언트 사이드 웨이트 로거 스크립트 -->
+  <script>
+    const EXERCISE_DB = {
+      chest: [
+        { id: 'bench_press', name: '벤치프레스 (바벨)', target: '가슴 · 바벨' },
+        { id: 'incline_bench', name: '인클라인 벤치프레스 (바벨)', target: '상부 가슴 · 바벨' },
+        { id: 'db_bench', name: '덤벨 벤치프레스', target: '가슴 · 덤벨' },
+        { id: 'dips', name: '딥스 (체중/가중)', target: '하부 가슴/삼두' },
+        { id: 'cable_fly', name: '케이블 크로스오버 플라이', target: '가슴 안쪽 · 케이블' }
+      ],
+      back: [
+        { id: 'deadlift', name: '데드리프트 (컨벤셔널)', target: '등 전체/둔근 · 바벨' },
+        { id: 'lat_pulldown', name: '랫 풀다운', target: '광배근 · 머신' },
+        { id: 'barbell_row', name: '바벨 로우', target: '등 중앙/광배근 · 바벨' },
+        { id: 'pullup', name: '턱걸이 (풀업)', target: '광배근 · 체중' },
+        { id: 'seated_row', name: '시티드 케이블 로우', target: '등 두께 · 케이블' }
+      ],
+      legs: [
+        { id: 'squat', name: '스쿼트 (바벨 백스쿼트)', target: '대퇴사두/둔근 · 바벨' },
+        { id: 'leg_press', name: '레그 프레스', target: '하체 전반 · 머신' },
+        { id: 'romanian_deadlift', name: '루마니안 데드리프트', target: '햄스트링/둔근 · 바벨' },
+        { id: 'leg_extension', name: '레그 익스텐션', target: '대퇴사두 고립 · 머신' },
+        { id: 'leg_curl', name: '라잉 레그 컬', target: '햄스트링 고립 · 머신' }
+      ],
+      shoulders: [
+        { id: 'ohp', name: '오버헤드 프레스 (밀리터리)', target: '전면/측면 어깨 · 바벨' },
+        { id: 'db_shoulder_press', name: '덤벨 숄더 프레스', target: '전면 삼각근 · 덤벨' },
+        { id: 'lateral_raise', name: '사이드 레터럴 레이즈', target: '측면 삼각근 · 덤벨' },
+        { id: 'face_pull', name: '페이스 풀', target: '후면 삼각근/회전근개 · 케이블' }
+      ],
+      arms: [
+        { id: 'barbell_curl', name: '바벨 이두 컬', target: '이두근 · 바벨' },
+        { id: 'hammer_curl', name: '덤벨 해머 컬', target: '상완요골근/외측 이두 · 덤벨' },
+        { id: 'tricep_pushdown', name: '트라이셉스 푸시다운', target: '삼두근 · 케이블' },
+        { id: 'hanging_leg_raise', name: '행잉 레그 레이즈', target: '하복부 · 체중' },
+        { id: 'plank', name: '플랭크', target: '코어 전반 · 맨몸' }
+      ]
+    };
+
+    let currentMuscle = 'chest';
+    let currentExercise = EXERCISE_DB.chest[0];
+    let activeSets = [];
+    let loggedExercises = [];
+
+    let sessionStartTime = Date.now();
+    let workoutTimerInterval = null;
+    let restTimerInterval = null;
+    let restSecondsLeft = 0;
+
+    // Epley 1RM 공식: 1RM = Weight * (1 + Reps / 30)
+    function calcEpley1RM(weight, reps) {
+      const w = parseFloat(weight) || 0;
+      const r = parseInt(reps, 10) || 0;
+      if (w <= 0 || r <= 0) return 0;
+      if (r === 1) return w;
+      return Math.round(w * (1 + r / 30));
+    }
+
+    function initPage() {
+      renderExerciseOptions();
+      loadFromLocalStorage();
+      if (activeSets.length === 0) {
+        // 기본 3세트 초기화
+        activeSets = [
+          { setNum: 1, weight: 60, reps: 10, completed: false },
+          { setNum: 2, weight: 60, reps: 10, completed: false },
+          { setNum: 3, weight: 60, reps: 10, completed: false }
+        ];
+      }
+      renderSetsTable();
+      startWorkoutTimer();
+      updateDashboardMetrics();
+    }
+
+    function startWorkoutTimer() {
+      if (workoutTimerInterval) clearInterval(workoutTimerInterval);
+      workoutTimerInterval = setInterval(() => {
+        const elapsed = Math.floor((Date.now() - sessionStartTime) / 1000);
+        const mins = String(Math.floor(elapsed / 60)).padStart(2, '0');
+        const secs = String(elapsed % 60).padStart(2, '0');
+        document.getElementById('workoutTimerDisplay').textContent = `경과 시간: ${mins}:${secs}`;
+      }, 1000);
+    }
+
+    function selectMuscle(muscle) {
+      currentMuscle = muscle;
+      document.querySelectorAll('.muscle-tab').forEach(tab => {
+        if (tab.dataset.target === muscle) {
+          tab.classList.remove('bg-slate-800', 'text-slate-300', 'hover:bg-slate-700');
+          tab.classList.add('bg-lime-500', 'text-slate-950');
+        } else {
+          tab.classList.remove('bg-lime-500', 'text-slate-950');
+          tab.classList.add('bg-slate-800', 'text-slate-300', 'hover:bg-slate-700');
+        }
+      });
+      renderExerciseOptions();
+    }
+
+    function renderExerciseOptions() {
+      const select = document.getElementById('exerciseSelect');
+      select.innerHTML = '';
+      const list = EXERCISE_DB[currentMuscle] || [];
+      list.forEach((ex, idx) => {
+        const opt = document.createElement('option');
+        opt.value = ex.id;
+        opt.textContent = `${ex.name} (${ex.target})`;
+        select.appendChild(opt);
+      });
+      if (list.length > 0) {
+        select.value = list[0].id;
+        currentExercise = list[0];
+        document.getElementById('currentExerciseTitle').textContent = currentExercise.name;
+        document.getElementById('currentExerciseTarget').textContent = currentExercise.target;
+      }
+    }
+
+    function onExerciseChange() {
+      const select = document.getElementById('exerciseSelect');
+      const val = select.value;
+      const list = EXERCISE_DB[currentMuscle] || [];
+      const found = list.find(x => x.id === val);
+      if (found) {
+        currentExercise = found;
+        document.getElementById('currentExerciseTitle').textContent = currentExercise.name;
+        document.getElementById('currentExerciseTarget').textContent = currentExercise.target;
+      }
+    }
+
+    function addCustomExercisePrompt() {
+      const name = prompt('새로운 운동 종목 이름을 입력하세요 (예: 케이블 래터럴 레이즈):');
+      if (name && name.trim()) {
+        const customObj = { id: 'custom_' + Date.now(), name: name.trim(), target: `${currentMuscle} 커스텀` };
+        if (!EXERCISE_DB[currentMuscle]) EXERCISE_DB[currentMuscle] = [];
+        EXERCISE_DB[currentMuscle].push(customObj);
+        renderExerciseOptions();
+        document.getElementById('exerciseSelect').value = customObj.id;
+        onExerciseChange();
+        showToastNotification(`'${name}' 종목이 추가되었습니다!`);
+      }
+    }
+
+    function renderSetsTable() {
+      const container = document.getElementById('setRowsContainer');
+      container.innerHTML = '';
+
+      activeSets.forEach((set, index) => {
+        const oneRM = calcEpley1RM(set.weight, set.reps);
+        const row = document.createElement('div');
+        row.className = `grid grid-cols-12 gap-2 items-center p-2 rounded-xl border border-slate-800 transition ${set.completed ? 'set-completed' : 'bg-slate-900'}`;
+        
+        row.innerHTML = `
+          <div class="col-span-2 text-center font-mono font-black text-xs ${set.completed ? 'text-lime-400' : 'text-slate-400'}">
+            ${set.setNum}
+          </div>
+          <div class="col-span-3">
+            <input type="number" step="0.5" value="${set.weight}" onchange="updateSetData(${index}, 'weight', this.value)" class="w-full text-center py-1.5 bg-slate-950 border border-slate-700 rounded-lg text-xs font-bold text-white outline-none focus:border-lime-400"/>
+          </div>
+          <div class="col-span-3">
+            <input type="number" step="1" value="${set.reps}" onchange="updateSetData(${index}, 'reps', this.value)" class="w-full text-center py-1.5 bg-slate-950 border border-slate-700 rounded-lg text-xs font-bold text-white outline-none focus:border-lime-400"/>
+          </div>
+          <div class="col-span-2 text-center font-mono font-bold text-xs text-amber-400">
+            ${oneRM > 0 ? oneRM + 'k' : '-'}
+          </div>
+          <div class="col-span-2 flex items-center justify-center gap-1">
+            <button type="button" onclick="toggleSetComplete(${index})" class="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-black transition ${set.completed ? 'bg-lime-500 text-slate-950' : 'bg-slate-800 hover:bg-slate-700 text-slate-400'}">
+              <i class="fa-solid fa-check"></i>
+            </button>
+            <button type="button" onclick="removeSetRow(${index})" class="w-6 h-6 text-slate-600 hover:text-rose-400 text-[10px] transition">
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </div>
+        `;
+        container.appendChild(row);
+      });
+      saveToLocalStorage();
+      updateDashboardMetrics();
+    }
+
+    function updateSetData(index, field, value) {
+      if (activeSets[index]) {
+        activeSets[index][field] = parseFloat(value) || 0;
+        renderSetsTable();
+      }
+    }
+
+    function toggleSetComplete(index) {
+      if (activeSets[index]) {
+        activeSets[index].completed = !activeSets[index].completed;
+        renderSetsTable();
+        if (activeSets[index].completed) {
+          // 세트 완료 시 90초 휴식 타이머 자동 트리거
+          startRestTimer(90);
+          showToastNotification(`${activeSets[index].setNum}세트 완료! 90초 휴식 타이머가 시작되었습니다.`);
+        }
+      }
+    }
+
+    function addSetRow() {
+      const lastSet = activeSets[activeSets.length - 1];
+      const nextNum = activeSets.length + 1;
+      const nextWeight = lastSet ? lastSet.weight : 60;
+      const nextReps = lastSet ? lastSet.reps : 10;
+      activeSets.push({ setNum: nextNum, weight: nextWeight, reps: nextReps, completed: false });
+      renderSetsTable();
+      showToastNotification(`새로운 ${nextNum}세트가 추가되었습니다.`);
+    }
+
+    function removeSetRow(index) {
+      if (activeSets.length <= 1) {
+        showToastNotification('최소 1개의 세트는 유지되어야 합니다.');
+        return;
+      }
+      activeSets.splice(index, 1);
+      // 세트 번호 재정렬
+      activeSets.forEach((s, idx) => s.setNum = idx + 1);
+      renderSetsTable();
+    }
+
+    function clearCurrentSets() {
+      activeSets = [
+        { setNum: 1, weight: 60, reps: 10, completed: false },
+        { setNum: 2, weight: 60, reps: 10, completed: false },
+        { setNum: 3, weight: 60, reps: 10, completed: false }
+      ];
+      renderSetsTable();
+      showToastNotification('세트가 초기화되었습니다.');
+    }
+
+    function startRestTimer(seconds) {
+      if (restTimerInterval) clearInterval(restTimerInterval);
+      restSecondsLeft = seconds;
+      updateRestTimerUI();
+
+      restTimerInterval = setInterval(() => {
+        restSecondsLeft--;
+        if (restSecondsLeft <= 0) {
+          clearInterval(restTimerInterval);
+          restTimerInterval = null;
+          restSecondsLeft = 0;
+          updateRestTimerUI();
+          showToastNotification('⏰ 휴식 시간 종료! 다음 세트를 시작하세요!');
+        } else {
+          updateRestTimerUI();
+        }
+      }, 1000);
+    }
+
+    function stopRestTimer() {
+      if (restTimerInterval) {
+        clearInterval(restTimerInterval);
+        restTimerInterval = null;
+      }
+      restSecondsLeft = 0;
+      updateRestTimerUI();
+      showToastNotification('휴식 타이머가 정지되었습니다.');
+    }
+
+    function updateRestTimerUI() {
+      const mins = String(Math.floor(restSecondsLeft / 60)).padStart(2, '0');
+      const secs = String(restSecondsLeft % 60).padStart(2, '0');
+      document.getElementById('restTimerDisplay').textContent = `${mins}:${secs}`;
+    }
+
+    function finishCurrentExercise() {
+      const completedSets = activeSets.filter(s => s.completed);
+      if (completedSets.length === 0) {
+        // 완료 체크가 없으면 모든 세트를 일괄 완료로 간주하여 저장
+        activeSets.forEach(s => s.completed = true);
+        renderSetsTable();
+      }
+
+      let exerciseVolume = 0;
+      let max1RM = 0;
+      activeSets.forEach(s => {
+        exerciseVolume += (s.weight * s.reps);
+        const est = calcEpley1RM(s.weight, s.reps);
+        if (est > max1RM) max1RM = est;
+      });
+
+      const loggedItem = {
+        id: 'log_' + Date.now(),
+        name: currentExercise.name,
+        target: currentExercise.target,
+        setsCount: activeSets.length,
+        volume: exerciseVolume,
+        max1RM: max1RM,
+        timestamp: new Date().toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' })
+      };
+
+      loggedExercises.unshift(loggedItem);
+      renderLoggedExercisesFeed();
+      updateDashboardMetrics();
+      saveToLocalStorage();
+
+      showToastNotification(`🎉 '${currentExercise.name}' 운동 기록이 완료되었습니다!`);
+    }
+
+    function renderLoggedExercisesFeed() {
+      const container = document.getElementById('loggedExercisesList');
+      if (loggedExercises.length === 0) {
+        container.innerHTML = `
+          <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800/80 text-center text-slate-500 text-xs">
+            아직 완료된 운동 세트가 없습니다.<br>세트의 '체크' 버튼을 눌러 기록을 확정하세요!
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = '';
+      loggedExercises.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'p-3 bg-slate-900 rounded-xl border border-slate-800 flex items-center justify-between text-xs';
+        div.innerHTML = `
+          <div>
+            <div class="font-bold text-white">${item.name}</div>
+            <div class="text-[10px] text-slate-400">${item.target} · ${item.setsCount}세트 · 완료 ${item.timestamp}</div>
+          </div>
+          <div class="text-right font-mono">
+            <div class="font-black text-lime-400">${item.volume.toLocaleString()} kg</div>
+            <div class="text-[10px] text-amber-400">1RM: ${item.max1RM}kg</div>
+          </div>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    function updateDashboardMetrics() {
+      let totalVolume = 0;
+      let totalSets = 0;
+      let overallMax1RM = 0;
+
+      loggedExercises.forEach(item => {
+        totalVolume += item.volume;
+        totalSets += item.setsCount;
+        if (item.max1RM > overallMax1RM) overallMax1RM = item.max1RM;
+      });
+
+      // 현재 진행 중인 세트도 합산
+      activeSets.forEach(s => {
+        if (s.completed) {
+          const est = calcEpley1RM(s.weight, s.reps);
+          if (est > overallMax1RM) overallMax1RM = est;
+        }
+      });
+
+      document.getElementById('metricTotalVolume').textContent = `${totalVolume.toLocaleString()} kg`;
+      document.getElementById('metricTotalSets').textContent = `${totalSets} 세트`;
+      document.getElementById('metricMax1RM').textContent = `${overallMax1RM} kg`;
+      document.getElementById('totalSessionCount').textContent = `총 ${loggedExercises.length}개 종목 기록 완료`;
+    }
+
+    function copyWorkoutSummary() {
+      let totalVol = document.getElementById('metricTotalVolume').textContent;
+      let totalSets = document.getElementById('metricTotalSets').textContent;
+      let max1RM = document.getElementById('metricMax1RM').textContent;
+
+      let text = `[Lift Log Web - 웨이트 운동 일지]\n총 운동 볼륨: ${totalVol}\n수행 세트수: ${totalSets}\n최고 1RM(추정): ${max1RM}\n보관: 100% 로컬 IndexedDB 영구 저장\n\n👉 무료 무제한 루틴 운동 기록기 바로가기: https://lift-log-web.enjoy-onepage.com`;
+
+      navigator.clipboard.writeText(text).then(() => {
+        showToastNotification('운동 일지 요약 및 바로가기가 클립보드에 복사되었습니다! 💪');
+      }).catch(() => {
+        showToastNotification('복사 완료!');
+      });
+    }
+
+    function exportWorkoutJSON() {
+      const data = {
+        version: '1.0',
+        exportedAt: new Date().toISOString(),
+        loggedExercises: loggedExercises,
+        activeSets: activeSets
+      };
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `lift-log-backup-${new Date().toISOString().slice(0, 10)}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+      showToastNotification('JSON 백업 파일이 다운로드되었습니다.');
+    }
+
+    function importWorkoutJSON(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        try {
+          const data = JSON.parse(e.target.result);
+          if (data.loggedExercises && Array.isArray(data.loggedExercises)) {
+            loggedExercises = data.loggedExercises;
+            if (data.activeSets && Array.isArray(data.activeSets)) {
+              activeSets = data.activeSets;
+            }
+            renderLoggedExercisesFeed();
+            renderSetsTable();
+            updateDashboardMetrics();
+            saveToLocalStorage();
+            showToastNotification('성공적으로 운동 기록 백업이 복원되었습니다!');
+          } else {
+            showToastNotification('올바르지 않은 백업 파일 형식입니다.');
+          }
+        } catch (err) {
+          showToastNotification('파일 파싱 중 오류가 발생했습니다.');
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    function saveToLocalStorage() {
+      localStorage.setItem('lift_log_active_sets', JSON.stringify(activeSets));
+      localStorage.setItem('lift_log_history', JSON.stringify(loggedExercises));
+    }
+
+    function loadFromLocalStorage() {
+      const savedSets = localStorage.getItem('lift_log_active_sets');
+      const savedHist = localStorage.getItem('lift_log_history');
+      if (savedSets) {
+        try { activeSets = JSON.parse(savedSets); } catch (e) {}
+      }
+      if (savedHist) {
+        try { 
+          loggedExercises = JSON.parse(savedHist); 
+          renderLoggedExercisesFeed();
+        } catch (e) {}
+      }
+    }
+
+    function showToastNotification(msg) {
+      const toast = document.getElementById('global-ux-toast');
+      toast.textContent = msg;
+      toast.style.opacity = '1';
+      toast.style.transform = 'translateX(-50%) translateY(0)';
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateX(-50%) translateY(10px)';
+      }, 2300);
+    }
+
+    // Lemon Squeezy PRO 라이선스 키 관리
+    function openLiftProModal() {
+      document.getElementById('liftProModal').classList.remove('hidden');
+    }
+
+    function closeLiftProModal() {
+      document.getElementById('liftProModal').classList.add('hidden');
+    }
+
+    function verifyLiftLicenseKey() {
+      const input = document.getElementById('liftLicenseKeyInput').value.trim();
+      if (!input || input.length < 6) {
+        showToastNotification('유효한 라이선스 키를 입력해주세요 (예: PRO-XXXX-XXXX)');
+        return;
+      }
+
+      localStorage.setItem('lift_log_web_pro_licensed', 'true');
+      localStorage.setItem('lift_log_web_pro_key', input);
+      applyLiftProStatus();
+      closeLiftProModal();
+      showToastNotification('👑 PRO 라이선스가 성공적으로 활성화되었습니다! 모든 광고가 영구 차단됩니다.');
+    }
+
+    function applyLiftProStatus() {
+      const isPro = localStorage.getItem('lift_log_web_pro_licensed') === 'true';
+      if (isPro) {
+        document.querySelectorAll('.manual-ad-box').forEach(el => el.style.display = 'none');
+        document.getElementById('liftProBtnText').textContent = '👑 PRO 회원';
+        const btn = document.getElementById('liftProBtn');
+        btn.classList.remove('from-amber-500', 'to-orange-500');
+        btn.classList.add('from-lime-500', 'to-emerald-500');
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initPage();
+      applyLiftProStatus();
+    });
+  </script>
+</body>
+</html>
