@@ -22,6 +22,24 @@
   <style>
     .set-completed { background-color: rgba(132, 204, 22, 0.15); border-color: #84cc16 !important; }
   </style>
+<style id="layout-shield">
+  html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  .manual-ad-box {
+    width: 100%;
+    max-width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    overflow: hidden;
+  }
+  .manual-ad-box ins {
+    max-width: 100% !important;
+    overflow: hidden !important;
+  }
+</style>
 </head>
 <body class="bg-slate-950 text-slate-100 antialiased min-h-screen flex flex-col font-sans">
 
@@ -272,7 +290,70 @@
     <!-- LOGIC END -->
 
     <!-- E-E-A-T 서브페이지 네비게이션 링크 푸터 -->
-    <footer class="bg-slate-950 border-t border-slate-800 px-6 py-6 text-center text-xs text-slate-500">
+    
+<!-- 📌 상세 가이드 & FAQ 아코디언 (Google E-E-A-T 및 실사용자 가이드라인 100% 충족) -->
+<section class="max-w-4xl mx-auto my-12 px-4">
+  <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 sm:p-8 shadow-sm">
+    <div class="border-b border-slate-200 dark:border-slate-800 pb-5 mb-6">
+      <h3 class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight flex items-center gap-2.5">
+        <span>📖</span> 웨이트 트레이닝 1RM 추정 공식 및 점진적 과부하 가이드
+      </h3>
+      <p class="text-sm text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">Brzycki, Epley 공학 공식을 적용한 최대 근력 추정 및 총 볼륨(Volume) 누적 원리입니다.</p>
+    </div>
+
+    <!-- 공식 원리 & 핵심 기준 -->
+    <div class="mb-8">
+      <h4 class="text-xs font-black uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-4 flex items-center gap-1.5">
+        <span>⚖️</span> 핵심 산출 기준 및 법정 원리
+      </h4>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5">
+        
+        <div class="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-200/80 dark:border-slate-700/80">
+          <h4 class="text-base font-bold text-slate-800 dark:text-slate-100 mb-1.5 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-blue-500"></span>Brzycki & Epley 1RM 공식
+          </h4>
+          <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">반복 횟수(1~10회)와 중량을 기반으로 수학적 근피로도 감쇠 계수를 역산하여 부상 위험 없이 1회 최대 중량(1RM)을 도출합니다.</p>
+        </div>
+        <div class="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-200/80 dark:border-slate-700/80">
+          <h4 class="text-base font-bold text-slate-800 dark:text-slate-100 mb-1.5 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-blue-500"></span>주간 총 훈련 볼륨 (Sets × Reps × Weight)
+          </h4>
+          <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">근비대의 핵심 동력은 총 볼륨의 점진적 증가(Progressive Overload)에 있으며, 부위별 주당 10~20세트가 최적의 볼륨입니다.</p>
+        </div>
+        <div class="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-200/80 dark:border-slate-700/80">
+          <h4 class="text-base font-bold text-slate-800 dark:text-slate-100 mb-1.5 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-blue-500"></span>RPE(자각도) 기반 강도 조절
+          </h4>
+          <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">RPE 8(2개 더 들 수 있는 여유) 수준에서 본세트를 수행하여 중추신경계(CNS) 피로 누적을 방지합니다.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 자주 묻는 질문 (FAQ) -->
+    <div>
+      <h4 class="text-xs font-black uppercase tracking-wider text-emerald-600 dark:text-emerald-400 mb-4 flex items-center gap-1.5">
+        <span>❓</span> 자주 묻는 질문 (FAQ)
+      </h4>
+      <div class="space-y-3">
+        
+        <div class="border border-slate-200 dark:border-slate-700 rounded-xl p-4 bg-white dark:bg-slate-800">
+          <h4 class="font-semibold text-slate-800 dark:text-slate-100 text-sm mb-1">Q. 10회 이상 고반복 세트도 1RM 계산이 정확한가요?</h4>
+          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">A. 1RM 공식은 신경계와 근섬유 동원 특성상 3~8회 반복 시 정확도가 가장 높으며, 15회 이상은 근지구력 영향이 커 오차가 발생할 수 있습니다.</p>
+        </div>
+        <div class="border border-slate-200 dark:border-slate-700 rounded-xl p-4 bg-white dark:bg-slate-800">
+          <h4 class="font-semibold text-slate-800 dark:text-slate-100 text-sm mb-1">Q. 1RM의 몇 %로 운동해야 근육이 가장 잘 크나요?</h4>
+          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">A. 근비대(Hypertrophy) 목적은 1RM의 65~80%(8~12회 반복), 스트렝스 목적은 85% 이상(1~5회 반복)을 추천합니다.</p>
+        </div>
+        <div class="border border-slate-200 dark:border-slate-700 rounded-xl p-4 bg-white dark:bg-slate-800">
+          <h4 class="font-semibold text-slate-800 dark:text-slate-100 text-sm mb-1">Q. 디로드(Deload) 주기는 언제 가져야 하나요?</h4>
+          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">A. 4~6주간의 고강도 훈련 후 1주일간 평소 볼륨의 50~60%만 다루는 디로드 기간을 거쳐야 오버트레이닝과 건/인대 부상을 막을 수 있습니다.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="bg-slate-950 border-t border-slate-800 px-6 py-6 text-center text-xs text-slate-500">
       <div class="max-w-3xl mx-auto flex flex-wrap items-center justify-center gap-4 mb-3 font-medium">
         <a href="about.html" class="hover:text-lime-400 transition">서비스 소개 & 철학</a>
         <span class="text-slate-700">·</span>
