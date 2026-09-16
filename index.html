@@ -136,10 +136,7 @@
 <i class="fa-solid fa-shield-halved text-lime-400"></i>
 <span>100% Local-First</span>
 </div>
-<button class="px-3.5 py-1.5 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-slate-950 text-xs font-bold rounded-xl shadow-sm transition flex items-center gap-1.5" id="liftProBtn" onclick="openLiftProModal()">
-<i class="fa-solid fa-crown text-slate-950"></i>
-<span id="liftProBtnText">PRO 라이선스</span>
-</button>
+
 </div>
 </header>
 <!-- 안심 배지 바 -->
@@ -485,34 +482,7 @@
 <ins class="adsbygoogle" data-ad-client="ca-pub-2228289204702106" data-ad-format="auto" data-ad-slot="3416334507" data-full-width-responsive="true" style="display:block"></ins>
 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
-<!-- Lemon Squeezy PRO 라이선스 등록 모달 -->
-<div class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden" id="liftProModal">
-<div class="bg-slate-900 w-full max-w-md rounded-3xl p-6 sm:p-8 shadow-2xl border border-slate-800 text-center space-y-5 text-slate-100">
-<div class="w-14 h-14 mx-auto rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-2xl border border-amber-500/30">
-<i class="fa-solid fa-crown"></i>
-</div>
-<div>
-<h3 class="text-xl font-black text-white">PRO 평생 무광고 라이선스</h3>
-<p class="text-xs text-slate-400 mt-1">1회 결제로 모든 광고 영구 제거 및 무제한 루틴 평생 소장</p>
-</div>
-<div class="bg-slate-950/60 border border-slate-800 p-4 rounded-2xl text-left text-xs space-y-1.5 text-slate-300 font-medium">
-<p>✓ 구글 광고 영구 전면 차단 (운동 집중)</p>
-<p>✓ 1회 결제 ($4.99 / 약 6,500원, Hevy 월정액 대비 90% 절감)</p>
-<p>✓ 최대 3대 기기(PC/스마트폰/태블릿) 평생 인증</p>
-</div>
-<div class="space-y-2">
-<input class="w-full px-4 py-3 bg-slate-950 border border-slate-700 rounded-xl text-xs font-mono text-center uppercase focus:ring-2 focus:ring-lime-400 outline-none text-white" id="liftLicenseKeyInput" placeholder="라이선스 키 입력 (예: PRO-XXXX-XXXX)" type="text" aria-label="라이선스 키 입력 (예: PRO-XXXX-XXXX)" />
-<button class="w-full py-3 bg-lime-500 hover:bg-lime-400 text-slate-950 text-xs font-bold rounded-xl transition" id="btnVerifyLiftLicense" onclick="verifyLiftLicenseKey()" type="button">
-          라이선스 키 인증하기
-        </button>
-</div>
-<div class="pt-3 border-t border-slate-800 flex flex-col gap-2 text-xs">
-<a class="text-lime-400 font-bold hover:underline" href="https://lemonsqueezy.com" target="_blank" rel="noopener noreferrer">
-          👉 아직 키가 없으신가요? 평생 이용권 구매하기 ($4.99)
-        </a>
-<button class="text-slate-400 hover:text-slate-200" onclick="closeLiftProModal()" type="button">닫기</button>
-</div>
-</div>
+
 </div>
 <!-- 전사 공통 원클릭 결과 복사 토스트 알림 컴포넌트 -->
 <div id="global-ux-toast" style="position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(10px);background:#14532d;color:#86efac;border:1px solid #16a34a;padding:12px 24px;border-radius:9999px;font-size:14px;font-weight:600;box-shadow:0 10px 25px rgba(0,0,0,0.4);z-index:9999;transition:all 0.3s ease;opacity:0;pointer-events:none;">
@@ -947,8 +917,9 @@
       }
     }
 
-    function showToastNotification(msg) {
+        function showToastNotification(msg) {
       const toast = document.getElementById('global-ux-toast');
+      if (!toast) return;
       toast.textContent = msg;
       toast.style.opacity = '1';
       toast.style.transform = 'translateX(-50%) translateY(0)';
@@ -958,44 +929,9 @@
       }, 2300);
     }
 
-    // Lemon Squeezy PRO 라이선스 키 관리
-    function openLiftProModal() {
-      document.getElementById('liftProModal').classList.remove('hidden');
-    }
-
-    function closeLiftProModal() {
-      document.getElementById('liftProModal').classList.add('hidden');
-    }
-
-    function verifyLiftLicenseKey() {
-      const input = document.getElementById('liftLicenseKeyInput').value.trim();
-      if (!input || input.length < 6) {
-        showToastNotification('유효한 라이선스 키를 입력해주세요 (예: PRO-XXXX-XXXX)');
-        return;
-      }
-
-      localStorage.setItem('lift_log_web_pro_licensed', 'true');
-      localStorage.setItem('lift_log_web_pro_key', input);
-      applyLiftProStatus();
-      closeLiftProModal();
-      showToastNotification('👑 PRO 라이선스가 성공적으로 활성화되었습니다! 모든 광고가 영구 차단됩니다.');
-    }
-
-    function applyLiftProStatus() {
-      const isPro = localStorage.getItem('lift_log_web_pro_licensed') === 'true';
-      if (isPro) {
-        document.querySelectorAll('.manual-ad-box').forEach(el => el.style.display = 'none');
-        document.getElementById('liftProBtnText').textContent = '👑 PRO 회원';
-        const btn = document.getElementById('liftProBtn');
-        btn.classList.remove('from-amber-500', 'to-orange-500');
-        btn.classList.add('from-lime-500', 'to-emerald-500');
-      }
-    }
-
     document.addEventListener('DOMContentLoaded', () => {
       initPage();
-      applyLiftProStatus();
-    });
+});
   </script>
 </body>
 </html>
