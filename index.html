@@ -1,25 +1,22 @@
 <!DOCTYPE html>
+
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>웨이트 운동 기록기 | 세트·무게·1RM 계산·휴식 타이머 무료 로컬 트래커 (Lift Log Web)</title>
-  <meta name="description" content="Hevy 무료 대안! 루틴 무제한 무료 생성, 세트별 무게·횟수 빠른 입력, Epley 1RM 자동 계산, 휴식 타이머, 100% 브라우저 IndexedDB 영구 저장 웨이트 트레이닝 일지.">
-  <link rel="canonical" href="https://lift-log-web.enjoy-onepage.com/">
-  
-  <meta property="og:title" content="Lift Log Web - 광고와 루틴 제한 없는 무료 웨이트 운동 기록기">
-  <meta property="og:description" content="서버 전송 0%! 헬스장 오프라인에서도 즉시 기록하는 세트/랩/1RM 자동 계산 트래커.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://lift-log-web.enjoy-onepage.com/">
-  
-  <link rel="icon" href="favicon.ico">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-  <!-- Google AdSense 비동기 로더 (No-Duplicate-Push 헌법 준수) -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2228289204702106" crossorigin="anonymous"></script>
-
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>웨이트 운동 기록기 | 세트·무게·1RM 계산·휴식 타이머 무료 로컬 트래커 (Lift Log Web)</title>
+<meta content="Hevy 무료 대안! 루틴 무제한 무료 생성, 세트별 무게·횟수 빠른 입력, Epley 1RM 자동 계산, 휴식 타이머, 100% 브라우저 IndexedDB 영구 저장 웨이트 트레이닝 일지." name="description"/>
+<link href="https://lift-log-web.enjoy-onepage.com/" rel="canonical"/>
+<meta content="Lift Log Web - 광고와 루틴 제한 없는 무료 웨이트 운동 .." property="og:title"/>
+<meta content="서버 전송 0%! 헬스장 오프라인에서도 즉시 기록하는 세트/랩/1RM 자동 계산 트래커." property="og:description"/>
+<meta content="website" property="og:type"/>
+<meta content="https://lift-log-web.enjoy-onepage.com/" property="og:url"/>
+<link href="favicon.ico" rel="icon"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<!-- Google AdSense 비동기 로더 (No-Duplicate-Push 헌법 준수) -->
+<script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2228289204702106"></script>
+<style>
     .set-completed { background-color: rgba(132, 204, 22, 0.15); border-color: #84cc16 !important; }
   </style>
 <style id="layout-shield">
@@ -57,419 +54,362 @@
   }
 }
 </script>
-</head>
+<meta content="https://lift-log-web.enjoy-onepage.com/og-image.png" property="og:image"/><meta content="summary_large_image" name="twitter:card"/><meta content="Lift Log Web - 광고와 루틴 제한 없는 무료 웨이트 운동 .." name="twitter:title"/><meta content="서버 전송 0%! 헬스장 오프라인에서도 즉시 기록하는 세트/랩/1RM 자동 계산 트래커." name="twitter:description"/><meta content="https://lift-log-web.enjoy-onepage.com/og-image.png" name="twitter:image"/></head>
 <body class="bg-slate-950 text-slate-100 antialiased min-h-screen flex flex-col font-sans">
-
-  <!-- 상단 슬림 띠배너 (Top Slim Banner: 3824727725, 50~60px 고정) -->
-  <div class="manual-ad-box ad-top-banner w-full max-w-5xl mx-auto my-2 text-center overflow-hidden min-h-[50px] max-h-[60px]">
-    <ins class="adsbygoogle"
-         style="display:block; min-height:50px; max-height:60px;"
-         data-ad-client="ca-pub-2228289204702106"
-         data-ad-slot="3824727725"
-         data-ad-format="horizontal"
-         data-full-width-responsive="false"></ins>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-  </div>
-
-  <!-- 메인 래퍼 (Double-Nesting 금지, 루트 단일 컨테이너 선언) -->
-  <main class="w-full max-w-5xl mx-auto bg-slate-900 border border-slate-800 rounded-3xl shadow-2xl overflow-hidden mb-8 flex-1">
-    
-    <!-- 네비게이션 헤더 & 프라이버시 배지 -->
-    <header class="border-b border-slate-800 px-6 py-6 sm:px-10 flex flex-col md:flex-row items-center justify-between gap-4 bg-gradient-to-b from-slate-900 to-slate-950">
-      <div class="flex items-center gap-3.5 text-center md:text-left">
-        <div class="w-12 h-12 rounded-2xl bg-lime-500 text-slate-950 flex items-center justify-center text-2xl shadow-lg shadow-lime-500/20 shrink-0 font-black">
-          <i class="fa-solid fa-dumbbell"></i>
-        </div>
-        <div>
-          <div class="flex items-center gap-2 justify-center md:justify-start">
-            <h1 class="text-xl sm:text-2xl font-extrabold text-white tracking-tight">Lift Log Web</h1>
-            <span class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-lime-950 text-lime-400 border border-lime-800">무제한 루틴 무료</span>
-          </div>
-          <p class="text-xs sm:text-sm text-slate-400 mt-0.5">Hevy 구독 피로 없는 100% 브라우저 로컬 웨이트 트레이닝 일지</p>
-        </div>
-      </div>
-
-      <!-- 상단 액션 버튼 그룹 (PRO 모달 & 배지) -->
-      <div class="flex items-center gap-2.5">
-        <div class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-lime-950/60 border border-lime-800 text-lime-400 text-xs font-bold">
-          <i class="fa-solid fa-shield-halved text-lime-400"></i>
-          <span>100% Local-First</span>
-        </div>
-        <button id="liftProBtn" onclick="openLiftProModal()" class="px-3.5 py-1.5 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-slate-950 text-xs font-bold rounded-xl shadow-sm transition flex items-center gap-1.5">
-          <i class="fa-solid fa-crown text-slate-950"></i>
-          <span id="liftProBtnText">PRO 라이선스</span>
-        </button>
-      </div>
-    </header>
-
-    <!-- 안심 배지 바 -->
-    <div class="bg-lime-950/30 border-b border-lime-900/40 px-6 py-2.5 text-xs text-lime-200 flex items-center justify-between flex-wrap gap-2">
-      <div class="flex items-center gap-2">
-        <i class="fa-solid fa-bolt text-lime-400"></i>
-        <span><strong>오프라인 완벽 보장:</strong> 헬스장 데이터 불통 시에도 100% 작동 · 루틴 갯수 무제한 평생 무료</span>
-      </div>
-      <a href="privacy.html" class="underline hover:text-lime-300 font-semibold text-[11px]">로컬 보안 보증서 →</a>
-    </div>
-
-    <!-- LOGIC START -->
-    <!-- PC 1:1 좌우 2단 대칭형 그리드 (lg:grid-cols-12 좌 6열 : 우 6열 sticky) -->
-    <div class="p-6 sm:p-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-      
-      <!-- 좌측 6열: 운동 선택 및 세트 입력 폼 -->
-      <div class="lg:col-span-6 space-y-6">
-
-        <!-- 세션 컨트롤 및 운동 종목 선택기 -->
-        <div class="p-5 bg-slate-950 border border-slate-800 rounded-3xl space-y-4">
-          <div class="flex items-center justify-between">
-            <h2 class="text-sm font-bold text-white flex items-center gap-2">
-              <i class="fa-solid fa-person-running text-lime-400"></i>
-              <span>운동 종목 선택</span>
-            </h2>
-            <span class="text-[11px] font-mono text-slate-400" id="workoutTimerDisplay">경과 시간: 00:00</span>
-          </div>
-
-          <!-- 부위 탭 & 종목 선택 -->
-          <div class="space-y-3">
-            <div class="flex gap-1.5 overflow-x-auto pb-1 text-xs">
-              <button type="button" onclick="selectMuscle('chest')" class="muscle-tab px-3 py-1.5 rounded-xl bg-lime-500 text-slate-950 font-bold shrink-0 transition" data-target="chest">가슴</button>
-              <button type="button" onclick="selectMuscle('back')" class="muscle-tab px-3 py-1.5 rounded-xl bg-slate-800 text-slate-300 hover:bg-slate-700 font-bold shrink-0 transition" data-target="back">등</button>
-              <button type="button" onclick="selectMuscle('legs')" class="muscle-tab px-3 py-1.5 rounded-xl bg-slate-800 text-slate-300 hover:bg-slate-700 font-bold shrink-0 transition" data-target="legs">하체</button>
-              <button type="button" onclick="selectMuscle('shoulders')" class="muscle-tab px-3 py-1.5 rounded-xl bg-slate-800 text-slate-300 hover:bg-slate-700 font-bold shrink-0 transition" data-target="shoulders">어깨</button>
-              <button type="button" onclick="selectMuscle('arms')" class="muscle-tab px-3 py-1.5 rounded-xl bg-slate-800 text-slate-300 hover:bg-slate-700 font-bold shrink-0 transition" data-target="arms">팔/복근</button>
-            </div>
-
-            <div class="flex gap-2">
-              <select id="exerciseSelect" onchange="onExerciseChange()" class="flex-1 px-3.5 py-3 bg-slate-900 border border-slate-700 rounded-xl text-xs text-white font-bold outline-none">
-                <!-- JS로 부위별 종목 주입 -->
-              </select>
-              <button type="button" onclick="addCustomExercisePrompt()" class="px-3 py-3 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold rounded-xl shrink-0 transition" title="직접 운동 추가">
-                <i class="fa-solid fa-plus"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- 세트 기록 테이블 카드 -->
-        <div class="p-5 bg-slate-950 border border-slate-800 rounded-3xl space-y-4">
-          <div class="flex items-center justify-between">
-            <div>
-              <h3 class="text-sm font-black text-white" id="currentExerciseTitle">벤치프레스 (바벨)</h3>
-              <p class="text-[11px] text-slate-400" id="currentExerciseTarget">가슴 운동 · 바벨</p>
-            </div>
-            <button type="button" onclick="addSetRow()" class="px-3 py-1.5 bg-lime-500 hover:bg-lime-400 text-slate-950 text-xs font-black rounded-xl transition flex items-center gap-1.5 shadow-sm">
-              <i class="fa-solid fa-plus"></i>
-              <span>세트 추가</span>
-            </button>
-          </div>
-
-          <!-- 테이블 헤더 -->
-          <div class="grid grid-cols-12 gap-2 text-[11px] font-mono font-bold text-slate-400 px-2 py-1 border-b border-slate-800 text-center">
-            <span class="col-span-2">SET</span>
-            <span class="col-span-3">KG (중량)</span>
-            <span class="col-span-3">REPS (횟수)</span>
-            <span class="col-span-2">1RM</span>
-            <span class="col-span-2">완료</span>
-          </div>
-
-          <!-- 세트 행 컨테이너 -->
-          <div id="setRowsContainer" class="space-y-2">
-            <!-- 동적 세트 행 주입 -->
-          </div>
-
-          <!-- 세트 간 빠른 조정 버튼 바 -->
-          <div class="pt-2 flex items-center justify-between text-xs text-slate-400 border-t border-slate-800">
-            <span class="text-[11px]">이전 세트 자동 복제 및 Epley 1RM 추정</span>
-            <button type="button" onclick="clearCurrentSets()" class="text-rose-400 hover:underline text-[11px] font-semibold">세트 초기화</button>
-          </div>
-        </div>
-
-        <!-- 휴식 타이머 위젯 카드 -->
-        <div class="p-5 bg-slate-950 border border-slate-800 rounded-3xl flex items-center justify-between">
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-xl bg-lime-500/20 text-lime-400 flex items-center justify-center text-lg font-black border border-lime-500/30">
-              <i class="fa-solid fa-stopwatch"></i>
-            </div>
-            <div>
-              <div class="text-xs font-bold text-white">휴식 타이머</div>
-              <div class="text-xl font-mono font-black text-lime-400" id="restTimerDisplay">00:00</div>
-            </div>
-          </div>
-          <div class="flex items-center gap-1.5">
-            <button type="button" onclick="startRestTimer(60)" class="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold rounded-xl transition">60초</button>
-            <button type="button" onclick="startRestTimer(90)" class="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold rounded-xl transition">90초</button>
-            <button type="button" onclick="startRestTimer(120)" class="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold rounded-xl transition">120초</button>
-            <button type="button" onclick="stopRestTimer()" class="px-2.5 py-1.5 bg-rose-950/60 text-rose-300 hover:bg-rose-900/80 border border-rose-800 text-xs font-bold rounded-xl transition">정지</button>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- 우측 6열: 운동 요약 영수증 및 기록 저장 (lg:sticky) -->
-      <div class="lg:col-span-6 lg:sticky lg:top-8 space-y-6">
-        
-        <!-- 실시간 운동 분석 영수증 카드 -->
-        <div class="bg-slate-950 text-slate-100 rounded-3xl p-6 sm:p-7 shadow-2xl border border-slate-800">
-          
-          <div class="flex items-center justify-between border-b border-slate-800 pb-4">
-            <div class="flex items-center gap-2">
-              <div class="w-2.5 h-2.5 rounded-full bg-lime-400 animate-pulse"></div>
-              <h2 class="font-bold text-sm text-slate-200 tracking-wide uppercase">
-                <span id="workoutStatusTitle">오늘의 운동 세션 대시보드</span>
-              </h2>
-            </div>
-            <div class="text-right font-mono text-xs text-lime-400 font-black">
-              <span id="totalSessionCount">총 0개 종목 기록 중</span>
-            </div>
-          </div>
-
-          <!-- 핵심 지표 요약 3단 그리드 -->
-          <div class="grid grid-cols-3 gap-2 my-5">
-            <div class="p-3 bg-slate-900 rounded-2xl border border-slate-800 text-center">
-              <div class="text-[10px] text-slate-500 font-mono">TOTAL VOLUME</div>
-              <div class="text-lg font-black text-lime-400 mt-0.5" id="metricTotalVolume">0 kg</div>
-            </div>
-            <div class="p-3 bg-slate-900 rounded-2xl border border-slate-800 text-center">
-              <div class="text-[10px] text-slate-500 font-mono">TOTAL SETS</div>
-              <div class="text-lg font-black text-white mt-0.5" id="metricTotalSets">0 세트</div>
-            </div>
-            <div class="p-3 bg-slate-900 rounded-2xl border border-slate-800 text-center">
-              <div class="text-[10px] text-slate-500 font-mono">EST. MAX 1RM</div>
-              <div class="text-lg font-black text-amber-400 mt-0.5" id="metricMax1RM">0 kg</div>
-            </div>
-          </div>
-
-          <!-- 오늘 기록된 완료 운동 목록 요약 피드 -->
-          <div class="space-y-2 py-2 border-t border-slate-800">
-            <div class="text-xs font-bold text-slate-300 flex items-center justify-between">
-              <span>완료된 종목별 볼륨 리포트</span>
-              <span class="text-[11px] font-mono text-slate-500">Epley 공식</span>
-            </div>
-            <div id="loggedExercisesList" class="max-h-48 overflow-y-auto space-y-2 pr-1 text-xs">
-              <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800/80 text-center text-slate-500 text-xs">
-                아직 완료된 운동 세트가 없습니다.<br>세트의 '체크' 버튼을 눌러 기록을 확정하세요!
+<!-- 상단 슬림 띠배너 (Top Slim Banner: 3824727725, 50~60px 고정) -->
+<div class="manual-ad-box ad-top-banner w-full max-w-5xl mx-auto my-2 text-center overflow-hidden min-h-[50px] max-h-[60px]">
+<ins class="adsbygoogle" data-ad-client="ca-pub-2228289204702106" data-ad-format="horizontal" data-ad-slot="3824727725" data-full-width-responsive="false" style="display:block; min-height:50px; max-height:60px;"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+<!-- 메인 래퍼 (Double-Nesting 금지, 루트 단일 컨테이너 선언) -->
+<main class="w-full max-w-5xl mx-auto bg-slate-900 border border-slate-800 rounded-3xl shadow-2xl overflow-hidden mb-8 flex-1">
+<!-- 네비게이션 헤더 & 프라이버시 배지 -->
+<header class="border-b border-slate-800 px-6 py-6 sm:px-10 flex flex-col md:flex-row items-center justify-between gap-4 bg-gradient-to-b from-slate-900 to-slate-950">
+<div class="flex items-center gap-3.5 text-center md:text-left">
+<div class="w-12 h-12 rounded-2xl bg-lime-500 text-slate-950 flex items-center justify-center text-2xl shadow-lg shadow-lime-500/20 shrink-0 font-black">
+<i class="fa-solid fa-dumbbell"></i>
+</div>
+<div>
+<div class="flex items-center gap-2 justify-center md:justify-start">
+<h1 class="text-xl sm:text-2xl font-extrabold text-white tracking-tight">Lift Log Web</h1>
+<span class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-lime-950 text-lime-400 border border-lime-800">무제한 루틴 무료</span>
+</div>
+<p class="text-xs sm:text-sm text-slate-400 mt-0.5">Hevy 구독 피로 없는 100% 브라우저 로컬 웨이트 트레이닝 일지</p>
+</div>
+</div>
+<!-- 상단 액션 버튼 그룹 (PRO 모달 & 배지) -->
+<div class="flex items-center gap-2.5">
+<div class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-lime-950/60 border border-lime-800 text-lime-400 text-xs font-bold">
+<i class="fa-solid fa-shield-halved text-lime-400"></i>
+<span>100% Local-First</span>
+</div>
+<button class="px-3.5 py-1.5 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-slate-950 text-xs font-bold rounded-xl shadow-sm transition flex items-center gap-1.5" id="liftProBtn" onclick="openLiftProModal()">
+<i class="fa-solid fa-crown text-slate-950"></i>
+<span id="liftProBtnText">PRO 라이선스</span>
+</button>
+</div>
+</header>
+<!-- 안심 배지 바 -->
+<div class="bg-lime-950/30 border-b border-lime-900/40 px-6 py-2.5 text-xs text-lime-200 flex items-center justify-between flex-wrap gap-2">
+<div class="flex items-center gap-2">
+<i class="fa-solid fa-bolt text-lime-400"></i>
+<span><strong>오프라인 완벽 보장:</strong> 헬스장 데이터 불통 시에도 100% 작동 · 루틴 갯수 무제한 평생 무료</span>
+</div>
+<a class="underline hover:text-lime-300 font-semibold text-[11px]" href="privacy.html">로컬 보안 보증서 →</a>
+</div>
+<!-- LOGIC START -->
+<!-- PC 1:1 좌우 2단 대칭형 그리드 (lg:grid-cols-12 좌 6열 : 우 6열 sticky) -->
+<div class="p-6 sm:p-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- 좌측 6열: 운동 선택 및 세트 입력 폼 -->
+<div class="lg:col-span-6 space-y-6">
+<!-- 세션 컨트롤 및 운동 종목 선택기 -->
+<div class="p-5 bg-slate-950 border border-slate-800 rounded-3xl space-y-4">
+<div class="flex items-center justify-between">
+<h2 class="text-sm font-bold text-white flex items-center gap-2">
+<i class="fa-solid fa-person-running text-lime-400"></i>
+<span>운동 종목 선택</span>
+</h2>
+<span class="text-[11px] font-mono text-slate-400" id="workoutTimerDisplay">경과 시간: 00:00</span>
+</div>
+<!-- 부위 탭 & 종목 선택 -->
+<div class="space-y-3">
+<div class="flex gap-1.5 overflow-x-auto pb-1 text-xs">
+<button class="muscle-tab px-3 py-1.5 rounded-xl bg-lime-500 text-slate-950 font-bold shrink-0 transition" data-target="chest" onclick="selectMuscle('chest')" type="button">가슴</button>
+<button class="muscle-tab px-3 py-1.5 rounded-xl bg-slate-800 text-slate-300 hover:bg-slate-700 font-bold shrink-0 transition" data-target="back" onclick="selectMuscle('back')" type="button">등</button>
+<button class="muscle-tab px-3 py-1.5 rounded-xl bg-slate-800 text-slate-300 hover:bg-slate-700 font-bold shrink-0 transition" data-target="legs" onclick="selectMuscle('legs')" type="button">하체</button>
+<button class="muscle-tab px-3 py-1.5 rounded-xl bg-slate-800 text-slate-300 hover:bg-slate-700 font-bold shrink-0 transition" data-target="shoulders" onclick="selectMuscle('shoulders')" type="button">어깨</button>
+<button class="muscle-tab px-3 py-1.5 rounded-xl bg-slate-800 text-slate-300 hover:bg-slate-700 font-bold shrink-0 transition" data-target="arms" onclick="selectMuscle('arms')" type="button">팔/복근</button>
+</div>
+<div class="flex gap-2">
+<select class="flex-1 px-3.5 py-3 bg-slate-900 border border-slate-700 rounded-xl text-xs text-white font-bold outline-none" id="exerciseSelect" onchange="onExerciseChange()">
+<!-- JS로 부위별 종목 주입 -->
+</select>
+<button class="px-3 py-3 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold rounded-xl shrink-0 transition" onclick="addCustomExercisePrompt()" title="직접 운동 추가" type="button">
+<i class="fa-solid fa-plus"></i>
+</button>
+</div>
+</div>
+</div>
+<!-- 세트 기록 테이블 카드 -->
+<div class="p-5 bg-slate-950 border border-slate-800 rounded-3xl space-y-4">
+<div class="flex items-center justify-between">
+<div>
+<h3 class="text-sm font-black text-white" id="currentExerciseTitle">벤치프레스 (바벨)</h3>
+<p class="text-[11px] text-slate-400" id="currentExerciseTarget">가슴 운동 · 바벨</p>
+</div>
+<button class="px-3 py-1.5 bg-lime-500 hover:bg-lime-400 text-slate-950 text-xs font-black rounded-xl transition flex items-center gap-1.5 shadow-sm" onclick="addSetRow()" type="button">
+<i class="fa-solid fa-plus"></i>
+<span>세트 추가</span>
+</button>
+</div>
+<!-- 테이블 헤더 -->
+<div class="grid grid-cols-12 gap-2 text-[11px] font-mono font-bold text-slate-400 px-2 py-1 border-b border-slate-800 text-center">
+<span class="col-span-2">SET</span>
+<span class="col-span-3">KG (중량)</span>
+<span class="col-span-3">REPS (횟수)</span>
+<span class="col-span-2">1RM</span>
+<span class="col-span-2">완료</span>
+</div>
+<!-- 세트 행 컨테이너 -->
+<div class="space-y-2" id="setRowsContainer">
+<!-- 동적 세트 행 주입 -->
+</div>
+<!-- 세트 간 빠른 조정 버튼 바 -->
+<div class="pt-2 flex items-center justify-between text-xs text-slate-400 border-t border-slate-800">
+<span class="text-[11px]">이전 세트 자동 복제 및 Epley 1RM 추정</span>
+<button class="text-rose-400 hover:underline text-[11px] font-semibold" onclick="clearCurrentSets()" type="button">세트 초기화</button>
+</div>
+</div>
+<!-- 휴식 타이머 위젯 카드 -->
+<div class="p-5 bg-slate-950 border border-slate-800 rounded-3xl flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-lime-500/20 text-lime-400 flex items-center justify-center text-lg font-black border border-lime-500/30">
+<i class="fa-solid fa-stopwatch"></i>
+</div>
+<div>
+<div class="text-xs font-bold text-white">휴식 타이머</div>
+<div class="text-xl font-mono font-black text-lime-400" id="restTimerDisplay">00:00</div>
+</div>
+</div>
+<div class="flex items-center gap-1.5">
+<button class="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold rounded-xl transition" onclick="startRestTimer(60)" type="button">60초</button>
+<button class="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold rounded-xl transition" onclick="startRestTimer(90)" type="button">90초</button>
+<button class="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold rounded-xl transition" onclick="startRestTimer(120)" type="button">120초</button>
+<button class="px-2.5 py-1.5 bg-rose-950/60 text-rose-300 hover:bg-rose-900/80 border border-rose-800 text-xs font-bold rounded-xl transition" onclick="stopRestTimer()" type="button">정지</button>
+</div>
+</div>
+</div>
+<!-- 우측 6열: 운동 요약 영수증 및 기록 저장 (lg:sticky) -->
+<div class="lg:col-span-6 lg:sticky lg:top-8 space-y-6">
+<!-- 실시간 운동 분석 영수증 카드 -->
+<div class="bg-slate-950 text-slate-100 rounded-3xl p-6 sm:p-7 shadow-2xl border border-slate-800">
+<div class="flex items-center justify-between border-b border-slate-800 pb-4">
+<div class="flex items-center gap-2">
+<div class="w-2.5 h-2.5 rounded-full bg-lime-400 animate-pulse"></div>
+<h2 class="font-bold text-sm text-slate-200 tracking-wide uppercase">
+<span id="workoutStatusTitle">오늘의 운동 세션 대시보드</span>
+</h2>
+</div>
+<div class="text-right font-mono text-xs text-lime-400 font-black">
+<span id="totalSessionCount">총 0개 종목 기록 중</span>
+</div>
+</div>
+<!-- 핵심 지표 요약 3단 그리드 -->
+<div class="grid grid-cols-3 gap-2 my-5">
+<div class="p-3 bg-slate-900 rounded-2xl border border-slate-800 text-center">
+<div class="text-[10px] text-slate-500 font-mono">TOTAL VOLUME</div>
+<div class="text-lg font-black text-lime-400 mt-0.5" id="metricTotalVolume">0 kg</div>
+</div>
+<div class="p-3 bg-slate-900 rounded-2xl border border-slate-800 text-center">
+<div class="text-[10px] text-slate-500 font-mono">TOTAL SETS</div>
+<div class="text-lg font-black text-white mt-0.5" id="metricTotalSets">0 세트</div>
+</div>
+<div class="p-3 bg-slate-900 rounded-2xl border border-slate-800 text-center">
+<div class="text-[10px] text-slate-500 font-mono">EST. MAX 1RM</div>
+<div class="text-lg font-black text-amber-400 mt-0.5" id="metricMax1RM">0 kg</div>
+</div>
+</div>
+<!-- 오늘 기록된 완료 운동 목록 요약 피드 -->
+<div class="space-y-2 py-2 border-t border-slate-800">
+<div class="text-xs font-bold text-slate-300 flex items-center justify-between">
+<span>완료된 종목별 볼륨 리포트</span>
+<span class="text-[11px] font-mono text-slate-500">Epley 공식</span>
+</div>
+<div class="max-h-48 overflow-y-auto space-y-2 pr-1 text-xs" id="loggedExercisesList">
+<div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800/80 text-center text-slate-500 text-xs">
+                아직 완료된 운동 세트가 없습니다.<br/>세트의 '체크' 버튼을 눌러 기록을 확정하세요!
               </div>
-            </div>
-          </div>
-
-          <!-- 운동 저장 및 세션 완료 버튼 -->
-          <div class="my-4 space-y-2">
-            <button type="button" id="btnFinishSession" onclick="finishCurrentExercise()" class="w-full py-4 bg-lime-500 hover:bg-lime-400 text-slate-950 font-black rounded-2xl transition shadow-lg shadow-lime-950/50 flex items-center justify-center gap-2 active:scale-95 text-sm">
-              <i class="fa-solid fa-check-double"></i>
-              <span id="finishBtnText">현재 운동 완료 및 세션 저장</span>
-            </button>
-          </div>
-
-          <!-- 동적 안전 명세 영수증 -->
-          <div class="py-2 space-y-2 font-mono text-xs border-t border-slate-800">
-            <div class="flex justify-between text-slate-400">
-              <span>STORAGE ENGINE:</span>
-              <span class="text-lime-400 font-bold">100% 브라우저 IndexedDB</span>
-            </div>
-            <div class="flex justify-between text-slate-400">
-              <span>PRIVACY STATUS:</span>
-              <span class="text-emerald-400 font-bold">외부 서버 전송 0% (완전 격리)</span>
-            </div>
-            <div class="flex justify-between text-slate-400">
-              <span>ROUTINE CAPACITY:</span>
-              <span class="text-white font-bold">무제한 무료 (Hevy 3개 제한 없음)</span>
-            </div>
-          </div>
-
-          <!-- 전사 공통 원클릭 결과 복사 & 바이럴 링크 -->
-          <div class="pt-5 border-t border-slate-800 space-y-2.5">
-            <button type="button" id="btnCopyWorkoutSummary" onclick="copyWorkoutSummary()" class="w-full py-3.5 bg-lime-500 hover:bg-lime-400 text-slate-950 font-black rounded-2xl text-xs transition flex items-center justify-center gap-2 shadow-lg shadow-lime-950/40">
-              <i class="fa-solid fa-copy text-slate-950"></i>
-              <span>운동 일지 요약 및 바로가기 클립보드 복사</span>
-            </button>
-
-            <!-- 원클릭 백업 다운로드 & 복원 -->
-            <div class="grid grid-cols-2 gap-2 pt-1">
-              <button type="button" onclick="exportWorkoutJSON()" class="py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold rounded-xl transition flex items-center justify-center gap-1.5">
-                <i class="fa-solid fa-download text-lime-400"></i> JSON 백업
+</div>
+</div>
+<!-- 운동 저장 및 세션 완료 버튼 -->
+<div class="my-4 space-y-2">
+<button class="w-full py-4 bg-lime-500 hover:bg-lime-400 text-slate-950 font-black rounded-2xl transition shadow-lg shadow-lime-950/50 flex items-center justify-center gap-2 active:scale-95 text-sm" id="btnFinishSession" onclick="finishCurrentExercise()" type="button">
+<i class="fa-solid fa-check-double"></i>
+<span id="finishBtnText">현재 운동 완료 및 세션 저장</span>
+</button>
+</div>
+<!-- 동적 안전 명세 영수증 -->
+<div class="py-2 space-y-2 font-mono text-xs border-t border-slate-800">
+<div class="flex justify-between text-slate-400">
+<span>STORAGE ENGINE:</span>
+<span class="text-lime-400 font-bold">100% 브라우저 IndexedDB</span>
+</div>
+<div class="flex justify-between text-slate-400">
+<span>PRIVACY STATUS:</span>
+<span class="text-emerald-400 font-bold">외부 서버 전송 0% (완전 격리)</span>
+</div>
+<div class="flex justify-between text-slate-400">
+<span>ROUTINE CAPACITY:</span>
+<span class="text-white font-bold">무제한 무료 (Hevy 3개 제한 없음)</span>
+</div>
+</div>
+<!-- 전사 공통 원클릭 결과 복사 & 바이럴 링크 -->
+<div class="pt-5 border-t border-slate-800 space-y-2.5">
+<button class="w-full py-3.5 bg-lime-500 hover:bg-lime-400 text-slate-950 font-black rounded-2xl text-xs transition flex items-center justify-center gap-2 shadow-lg shadow-lime-950/40" id="btnCopyWorkoutSummary" onclick="copyWorkoutSummary()" type="button">
+<i class="fa-solid fa-copy text-slate-950"></i>
+<span>운동 일지 요약 및 바로가기 클립보드 복사</span>
+</button>
+<!-- 원클릭 백업 다운로드 & 복원 -->
+<div class="grid grid-cols-2 gap-2 pt-1">
+<button class="py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold rounded-xl transition flex items-center justify-center gap-1.5" onclick="exportWorkoutJSON()" type="button">
+<i class="fa-solid fa-download text-lime-400"></i> JSON 백업
               </button>
-              <label class="py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold rounded-xl transition flex items-center justify-center gap-1.5 cursor-pointer text-center">
-                <i class="fa-solid fa-upload text-lime-400"></i> 백업 복원
-                <input type="file" id="importJsonInput" accept=".json" class="hidden" onchange="importWorkoutJSON(event)"/>
-              </label>
-            </div>
-          </div>
-
-          <!-- 보안 확인 문구 -->
-          <div class="mt-4 text-center text-[10px] text-slate-500 font-mono">
+<label class="py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold rounded-xl transition flex items-center justify-center gap-1.5 cursor-pointer text-center">
+<i class="fa-solid fa-upload text-lime-400"></i> 백업 복원
+                <input accept=".json" class="hidden" id="importJsonInput" onchange="importWorkoutJSON(event)" type="file"/>
+</label>
+</div>
+</div>
+<!-- 보안 확인 문구 -->
+<div class="mt-4 text-center text-[10px] text-slate-500 font-mono">
             100% CLIENT STORAGE · ZERO SUBSCRIPTION FEES · UNLIMITED ROUTINES
           </div>
-
-        </div>
-
-      </div>
-
-    </div>
-    <!-- LOGIC END -->
-
-    <!-- E-E-A-T 서브페이지 네비게이션 링크 푸터 -->
-    
+</div>
+</div>
+</div>
+<!-- LOGIC END -->
+<!-- E-E-A-T 서브페이지 네비게이션 링크 푸터 -->
 <!-- 📌 상세 가이드 & FAQ 아코디언 (Google E-E-A-T 및 실사용자 가이드라인 100% 충족) -->
 <section class="max-w-4xl mx-auto my-12 px-4">
-  <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 sm:p-8 shadow-sm">
-    <div class="border-b border-slate-200 dark:border-slate-800 pb-5 mb-6">
-      <h3 class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight flex items-center gap-2.5">
-        <span>📖</span> 웨이트 트레이닝 1RM 추정 공식 및 점진적 과부하 가이드
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 sm:p-8 shadow-sm">
+<div class="border-b border-slate-200 dark:border-slate-800 pb-5 mb-6">
+<h3 class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight flex items-center gap-2.5">
+<span>📖</span> 웨이트 트레이닝 1RM 추정 공식 및 점진적 과부하 가이드
       </h3>
-      <p class="text-sm text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">Brzycki, Epley 공학 공식을 적용한 최대 근력 추정 및 총 볼륨(Volume) 누적 원리입니다.</p>
-    </div>
-
-    <!-- 공식 원리 & 핵심 기준 -->
-    <div class="mb-8">
-      <h4 class="text-xs font-black uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-4 flex items-center gap-1.5">
-        <span>⚖️</span> 핵심 산출 기준 및 법정 원리
+<p class="text-sm text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">Brzycki, Epley 공학 공식을 적용한 최대 근력 추정 및 총 볼륨(Volume) 누적 원리입니다.</p>
+</div>
+<!-- 공식 원리 & 핵심 기준 -->
+<div class="mb-8">
+<h4 class="text-xs font-black uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-4 flex items-center gap-1.5">
+<span>⚖️</span> 핵심 산출 기준 및 법정 원리
       </h4>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5">
-        
-        <div class="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-200/80 dark:border-slate-700/80">
-          <h4 class="text-base font-bold text-slate-800 dark:text-slate-100 mb-1.5 flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-blue-500"></span>Brzycki & Epley 1RM 공식
+<div class="grid grid-cols-1 md:grid-cols-3 gap-3.5">
+<div class="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-200/80 dark:border-slate-700/80">
+<h4 class="text-base font-bold text-slate-800 dark:text-slate-100 mb-1.5 flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-blue-500"></span>Brzycki &amp; Epley 1RM 공식
           </h4>
-          <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">반복 횟수(1~10회)와 중량을 기반으로 수학적 근피로도 감쇠 계수를 역산하여 부상 위험 없이 1회 최대 중량(1RM)을 도출합니다.</p>
-        </div>
-        <div class="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-200/80 dark:border-slate-700/80">
-          <h4 class="text-base font-bold text-slate-800 dark:text-slate-100 mb-1.5 flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-blue-500"></span>주간 총 훈련 볼륨 (Sets × Reps × Weight)
+<p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">반복 횟수(1~10회)와 중량을 기반으로 수학적 근피로도 감쇠 계수를 역산하여 부상 위험 없이 1회 최대 중량(1RM)을 도출합니다.</p>
+</div>
+<div class="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-200/80 dark:border-slate-700/80">
+<h4 class="text-base font-bold text-slate-800 dark:text-slate-100 mb-1.5 flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-blue-500"></span>주간 총 훈련 볼륨 (Sets × Reps × Weight)
           </h4>
-          <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">근비대의 핵심 동력은 총 볼륨의 점진적 증가(Progressive Overload)에 있으며, 부위별 주당 10~20세트가 최적의 볼륨입니다.</p>
-        </div>
-        <div class="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-200/80 dark:border-slate-700/80">
-          <h4 class="text-base font-bold text-slate-800 dark:text-slate-100 mb-1.5 flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-blue-500"></span>RPE(자각도) 기반 강도 조절
+<p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">근비대의 핵심 동력은 총 볼륨의 점진적 증가(Progressive Overload)에 있으며, 부위별 주당 10~20세트가 최적의 볼륨입니다.</p>
+</div>
+<div class="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-200/80 dark:border-slate-700/80">
+<h4 class="text-base font-bold text-slate-800 dark:text-slate-100 mb-1.5 flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-blue-500"></span>RPE(자각도) 기반 강도 조절
           </h4>
-          <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">RPE 8(2개 더 들 수 있는 여유) 수준에서 본세트를 수행하여 중추신경계(CNS) 피로 누적을 방지합니다.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- 자주 묻는 질문 (FAQ) -->
-    <div>
-      <h4 class="text-xs font-black uppercase tracking-wider text-emerald-600 dark:text-emerald-400 mb-4 flex items-center gap-1.5">
-        <span>❓</span> 자주 묻는 질문 (FAQ)
+<p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">RPE 8(2개 더 들 수 있는 여유) 수준에서 본세트를 수행하여 중추신경계(CNS) 피로 누적을 방지합니다.</p>
+</div>
+</div>
+</div>
+<!-- 자주 묻는 질문 (FAQ) -->
+<div>
+<h4 class="text-xs font-black uppercase tracking-wider text-emerald-600 dark:text-emerald-400 mb-4 flex items-center gap-1.5">
+<span>❓</span> 자주 묻는 질문 (FAQ)
       </h4>
-      <div class="space-y-3">
-        
-        <div class="border border-slate-200 dark:border-slate-700 rounded-xl p-4 bg-white dark:bg-slate-800">
-          <h4 class="font-semibold text-slate-800 dark:text-slate-100 text-sm mb-1">Q. 10회 이상 고반복 세트도 1RM 계산이 정확한가요?</h4>
-          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">A. 1RM 공식은 신경계와 근섬유 동원 특성상 3~8회 반복 시 정확도가 가장 높으며, 15회 이상은 근지구력 영향이 커 오차가 발생할 수 있습니다.</p>
-        </div>
-        <div class="border border-slate-200 dark:border-slate-700 rounded-xl p-4 bg-white dark:bg-slate-800">
-          <h4 class="font-semibold text-slate-800 dark:text-slate-100 text-sm mb-1">Q. 1RM의 몇 %로 운동해야 근육이 가장 잘 크나요?</h4>
-          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">A. 근비대(Hypertrophy) 목적은 1RM의 65~80%(8~12회 반복), 스트렝스 목적은 85% 이상(1~5회 반복)을 추천합니다.</p>
-        </div>
-        <div class="border border-slate-200 dark:border-slate-700 rounded-xl p-4 bg-white dark:bg-slate-800">
-          <h4 class="font-semibold text-slate-800 dark:text-slate-100 text-sm mb-1">Q. 디로드(Deload) 주기는 언제 가져야 하나요?</h4>
-          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">A. 4~6주간의 고강도 훈련 후 1주일간 평소 볼륨의 50~60%만 다루는 디로드 기간을 거쳐야 오버트레이닝과 건/인대 부상을 막을 수 있습니다.</p>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="space-y-3">
+<div class="border border-slate-200 dark:border-slate-700 rounded-xl p-4 bg-white dark:bg-slate-800">
+<h4 class="font-semibold text-slate-800 dark:text-slate-100 text-sm mb-1">Q. 10회 이상 고반복 세트도 1RM 계산이 정확한가요?</h4>
+<p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">A. 1RM 공식은 신경계와 근섬유 동원 특성상 3~8회 반복 시 정확도가 가장 높으며, 15회 이상은 근지구력 영향이 커 오차가 발생할 수 있습니다.</p>
+</div>
+<div class="border border-slate-200 dark:border-slate-700 rounded-xl p-4 bg-white dark:bg-slate-800">
+<h4 class="font-semibold text-slate-800 dark:text-slate-100 text-sm mb-1">Q. 1RM의 몇 %로 운동해야 근육이 가장 잘 크나요?</h4>
+<p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">A. 근비대(Hypertrophy) 목적은 1RM의 65~80%(8~12회 반복), 스트렝스 목적은 85% 이상(1~5회 반복)을 추천합니다.</p>
+</div>
+<div class="border border-slate-200 dark:border-slate-700 rounded-xl p-4 bg-white dark:bg-slate-800">
+<h4 class="font-semibold text-slate-800 dark:text-slate-100 text-sm mb-1">Q. 디로드(Deload) 주기는 언제 가져야 하나요?</h4>
+<p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">A. 4~6주간의 고강도 훈련 후 1주일간 평소 볼륨의 50~60%만 다루는 디로드 기간을 거쳐야 오버트레이닝과 건/인대 부상을 막을 수 있습니다.</p>
+</div>
+</div>
+</div>
+</div>
 </section>
-
 <!-- 🔗 연관 유틸리티 도구 추천 카드 (사용자 체류시간 증가 & SEO 내부 링크) -->
 <section class="max-w-4xl mx-auto my-8 px-4">
-  <div class="bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm">
-    <h3 class="text-base font-black text-slate-900 dark:text-white mb-4 flex items-center gap-2">
-      <span>💡</span> 함께 많이 활용하는 필수 계산기 & 도구
+<div class="bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm">
+<h3 class="text-base font-black text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+<span>💡</span> 함께 많이 활용하는 필수 계산기 &amp; 도구
     </h3>
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
-      
-      <a href="https://aiapi.enjoy-onepage.com/" class="p-4 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-blue-500 hover:shadow-md transition flex items-center justify-between group">
-        <div>
-          <div class="text-xs text-blue-600 dark:text-blue-400 font-bold mb-1">추천 유틸리티</div>
-          <div class="text-sm font-black text-slate-800 dark:text-slate-100 group-hover:text-blue-600 transition">AI API 비용 계산기 (GPT·Claude)</div>
-        </div>
-        <span class="text-slate-400 group-hover:translate-x-1 transition font-bold">→</span>
-      </a>
-      <a href="https://insta-margin-calc.enjoy-onepage.com/" class="p-4 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-blue-500 hover:shadow-md transition flex items-center justify-between group">
-        <div>
-          <div class="text-xs text-blue-600 dark:text-blue-400 font-bold mb-1">추천 유틸리티</div>
-          <div class="text-sm font-black text-slate-800 dark:text-slate-100 group-hover:text-blue-600 transition">인스타 마켓 마진율 계산기</div>
-        </div>
-        <span class="text-slate-400 group-hover:translate-x-1 transition font-bold">→</span>
-      </a>
-      <a href="https://resume-text-counter.enjoy-onepage.com/" class="p-4 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-blue-500 hover:shadow-md transition flex items-center justify-between group">
-        <div>
-          <div class="text-xs text-blue-600 dark:text-blue-400 font-bold mb-1">추천 유틸리티</div>
-          <div class="text-sm font-black text-slate-800 dark:text-slate-100 group-hover:text-blue-600 transition">자소서 글자수·바이트 계산기</div>
-        </div>
-        <span class="text-slate-400 group-hover:translate-x-1 transition font-bold">→</span>
-      </a>
-    </div>
-  </div>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
+<a class="p-4 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-blue-500 hover:shadow-md transition flex items-center justify-between group" href="https://aiapi.enjoy-onepage.com/">
+<div>
+<div class="text-xs text-blue-600 dark:text-blue-400 font-bold mb-1">추천 유틸리티</div>
+<div class="text-sm font-black text-slate-800 dark:text-slate-100 group-hover:text-blue-600 transition">AI API 비용 계산기 (GPT·Claude)</div>
+</div>
+<span class="text-slate-400 group-hover:translate-x-1 transition font-bold">→</span>
+</a>
+<a class="p-4 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-blue-500 hover:shadow-md transition flex items-center justify-between group" href="https://insta-margin-calc.enjoy-onepage.com/">
+<div>
+<div class="text-xs text-blue-600 dark:text-blue-400 font-bold mb-1">추천 유틸리티</div>
+<div class="text-sm font-black text-slate-800 dark:text-slate-100 group-hover:text-blue-600 transition">인스타 마켓 마진율 계산기</div>
+</div>
+<span class="text-slate-400 group-hover:translate-x-1 transition font-bold">→</span>
+</a>
+<a class="p-4 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-blue-500 hover:shadow-md transition flex items-center justify-between group" href="https://resume-text-counter.enjoy-onepage.com/">
+<div>
+<div class="text-xs text-blue-600 dark:text-blue-400 font-bold mb-1">추천 유틸리티</div>
+<div class="text-sm font-black text-slate-800 dark:text-slate-100 group-hover:text-blue-600 transition">자소서 글자수·바이트 계산기</div>
+</div>
+<span class="text-slate-400 group-hover:translate-x-1 transition font-bold">→</span>
+</a>
+</div>
+</div>
 </section>
-
-
 <footer class="bg-slate-950 border-t border-slate-800 px-6 py-6 text-center text-xs text-slate-500">
-      <div class="max-w-3xl mx-auto flex flex-wrap items-center justify-center gap-4 mb-3 font-medium">
-        <a href="about.html" class="hover:text-lime-400 transition">서비스 소개 & 철학</a>
-        <span class="text-slate-700">·</span>
-        <a href="privacy.html" class="hover:text-lime-400 transition">개인정보처리방침 (로컬 보증서)</a>
-        <span class="text-slate-700">·</span>
-        <a href="terms.html" class="hover:text-lime-400 transition">이용약관</a>
-        <span class="text-slate-700">·</span>
-        <a href="sitemap.xml" class="hover:text-lime-400 transition">사이트맵</a>
-      </div>
-      <p>© 2026 Lift Log Web. All rights reserved. Zero-Server Local-First Architecture.</p>
-    </footer>
-
-  </main>
-
-  <!-- 하단 대형 배너 (푸터 직전: 3416334507, 1:1 푸시 규격) -->
-  <div class="manual-ad-box ad-bottom-banner w-full max-w-5xl mx-auto mb-8 text-center overflow-hidden">
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="ca-pub-2228289204702106"
-         data-ad-slot="3416334507"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-  </div>
-
-  <!-- Lemon Squeezy PRO 라이선스 등록 모달 -->
-  <div id="liftProModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
-    <div class="bg-slate-900 w-full max-w-md rounded-3xl p-6 sm:p-8 shadow-2xl border border-slate-800 text-center space-y-5 text-slate-100">
-      <div class="w-14 h-14 mx-auto rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-2xl border border-amber-500/30">
-        <i class="fa-solid fa-crown"></i>
-      </div>
-      <div>
-        <h3 class="text-xl font-black text-white">PRO 평생 무광고 라이선스</h3>
-        <p class="text-xs text-slate-400 mt-1">1회 결제로 모든 광고 영구 제거 및 무제한 루틴 평생 소장</p>
-      </div>
-
-      <div class="bg-slate-950/60 border border-slate-800 p-4 rounded-2xl text-left text-xs space-y-1.5 text-slate-300 font-medium">
-        <p>✓ 구글 광고 영구 전면 차단 (운동 집중)</p>
-        <p>✓ 1회 결제 ($4.99 / 약 6,500원, Hevy 월정액 대비 90% 절감)</p>
-        <p>✓ 최대 3대 기기(PC/스마트폰/태블릿) 평생 인증</p>
-      </div>
-
-      <div class="space-y-2">
-        <input type="text" id="liftLicenseKeyInput" placeholder="라이선스 키 입력 (예: PRO-XXXX-XXXX)" class="w-full px-4 py-3 bg-slate-950 border border-slate-700 rounded-xl text-xs font-mono text-center uppercase focus:ring-2 focus:ring-lime-400 outline-none text-white"/>
-        <button type="button" id="btnVerifyLiftLicense" onclick="verifyLiftLicenseKey()" class="w-full py-3 bg-lime-500 hover:bg-lime-400 text-slate-950 text-xs font-bold rounded-xl transition">
+<div class="max-w-3xl mx-auto flex flex-wrap items-center justify-center gap-4 mb-3 font-medium">
+<a class="hover:text-lime-400 transition" href="about.html">서비스 소개 &amp; 철학</a>
+<span class="text-slate-700">·</span>
+<a class="hover:text-lime-400 transition" href="privacy.html">개인정보처리방침 (로컬 보증서)</a>
+<span class="text-slate-700">·</span>
+<a class="hover:text-lime-400 transition" href="terms.html">이용약관</a>
+<span class="text-slate-700">·</span>
+<a class="hover:text-lime-400 transition" href="sitemap.xml">사이트맵</a>
+</div>
+<p>© 2026 Lift Log Web. All rights reserved. Zero-Server Local-First Architecture.</p>
+</footer>
+</main>
+<!-- 하단 대형 배너 (푸터 직전: 3416334507, 1:1 푸시 규격) -->
+<div class="manual-ad-box ad-bottom-banner w-full max-w-5xl mx-auto mb-8 text-center overflow-hidden">
+<ins class="adsbygoogle" data-ad-client="ca-pub-2228289204702106" data-ad-format="auto" data-ad-slot="3416334507" data-full-width-responsive="true" style="display:block"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+<!-- Lemon Squeezy PRO 라이선스 등록 모달 -->
+<div class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden" id="liftProModal">
+<div class="bg-slate-900 w-full max-w-md rounded-3xl p-6 sm:p-8 shadow-2xl border border-slate-800 text-center space-y-5 text-slate-100">
+<div class="w-14 h-14 mx-auto rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-2xl border border-amber-500/30">
+<i class="fa-solid fa-crown"></i>
+</div>
+<div>
+<h3 class="text-xl font-black text-white">PRO 평생 무광고 라이선스</h3>
+<p class="text-xs text-slate-400 mt-1">1회 결제로 모든 광고 영구 제거 및 무제한 루틴 평생 소장</p>
+</div>
+<div class="bg-slate-950/60 border border-slate-800 p-4 rounded-2xl text-left text-xs space-y-1.5 text-slate-300 font-medium">
+<p>✓ 구글 광고 영구 전면 차단 (운동 집중)</p>
+<p>✓ 1회 결제 ($4.99 / 약 6,500원, Hevy 월정액 대비 90% 절감)</p>
+<p>✓ 최대 3대 기기(PC/스마트폰/태블릿) 평생 인증</p>
+</div>
+<div class="space-y-2">
+<input class="w-full px-4 py-3 bg-slate-950 border border-slate-700 rounded-xl text-xs font-mono text-center uppercase focus:ring-2 focus:ring-lime-400 outline-none text-white" id="liftLicenseKeyInput" placeholder="라이선스 키 입력 (예: PRO-XXXX-XXXX)" type="text"/>
+<button class="w-full py-3 bg-lime-500 hover:bg-lime-400 text-slate-950 text-xs font-bold rounded-xl transition" id="btnVerifyLiftLicense" onclick="verifyLiftLicenseKey()" type="button">
           라이선스 키 인증하기
         </button>
-      </div>
-
-      <div class="pt-3 border-t border-slate-800 flex flex-col gap-2 text-xs">
-        <a href="https://lemonsqueezy.com" target="_blank" class="text-lime-400 font-bold hover:underline">
+</div>
+<div class="pt-3 border-t border-slate-800 flex flex-col gap-2 text-xs">
+<a class="text-lime-400 font-bold hover:underline" href="https://lemonsqueezy.com" target="_blank">
           👉 아직 키가 없으신가요? 평생 이용권 구매하기 ($4.99)
         </a>
-        <button type="button" onclick="closeLiftProModal()" class="text-slate-400 hover:text-slate-200">닫기</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- 전사 공통 원클릭 결과 복사 토스트 알림 컴포넌트 -->
-  <div id="global-ux-toast" style="position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(10px);background:#14532d;color:#86efac;border:1px solid #16a34a;padding:12px 24px;border-radius:9999px;font-size:14px;font-weight:600;box-shadow:0 10px 25px rgba(0,0,0,0.4);z-index:9999;transition:all 0.3s ease;opacity:0;pointer-events:none;">
+<button class="text-slate-400 hover:text-slate-200" onclick="closeLiftProModal()" type="button">닫기</button>
+</div>
+</div>
+</div>
+<!-- 전사 공통 원클릭 결과 복사 토스트 알림 컴포넌트 -->
+<div id="global-ux-toast" style="position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(10px);background:#14532d;color:#86efac;border:1px solid #16a34a;padding:12px 24px;border-radius:9999px;font-size:14px;font-weight:600;box-shadow:0 10px 25px rgba(0,0,0,0.4);z-index:9999;transition:all 0.3s ease;opacity:0;pointer-events:none;">
     알림 메시지
   </div>
-
-  <!-- 핵심 클라이언트 사이드 웨이트 로거 스크립트 -->
-  <script>
+<!-- 핵심 클라이언트 사이드 웨이트 로거 스크립트 -->
+<script>
     const EXERCISE_DB = {
       chest: [
         { id: 'bench_press', name: '벤치프레스 (바벨)', target: '가슴 · 바벨' },
