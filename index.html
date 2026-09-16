@@ -2,6 +2,11 @@
 
 <html lang="ko">
 <head>
+    <!-- Performance Optimization: Resource Preconnect -->
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://pagead2.googlesyndication.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+
 <link href="apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/><meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
 <title>웨이트 운동 기록기 | 세트·무게·1RM 계산·휴식 타이머 무료 로컬 트래커 (Lift Log Web)</title>
@@ -19,7 +24,18 @@
 <script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2228289204702106"></script>
 <style>
     .set-completed { background-color: rgba(132, 204, 22, 0.15); border-color: #84cc16 !important; }
-  </style>
+  
+        /* U3 Accessibility: Global Keyboard Focus Ring Standard */
+        :focus-visible {
+            outline: 2px solid #3b82f6 !important;
+            outline-offset: 2px !important;
+        }
+        input:focus-visible, select:focus-visible, textarea:focus-visible, button:focus-visible {
+            outline: 2px solid #2563eb !important;
+            outline-offset: 1px !important;
+        }
+    
+    </style>
 <style id="layout-shield">
   html, body {
     max-width: 100%;
@@ -158,7 +174,7 @@
 <button class="muscle-tab px-3 py-1.5 rounded-xl bg-slate-800 text-slate-300 hover:bg-slate-700 font-bold shrink-0 transition" data-target="arms" onclick="selectMuscle('arms')" type="button">팔/복근</button>
 </div>
 <div class="flex gap-2">
-<select class="flex-1 px-3.5 py-3 bg-slate-900 border border-slate-700 rounded-xl text-xs text-white font-bold outline-none" id="exerciseSelect" onchange="onExerciseChange()">
+<select class="flex-1 px-3.5 py-3 bg-slate-900 border border-slate-700 rounded-xl text-xs text-white font-bold outline-none" id="exerciseSelect" onchange="onExerciseChange()" aria-label="exerciseSelect">
 <!-- JS로 부위별 종목 주입 -->
 </select>
 <button class="px-3 py-3 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold rounded-xl shrink-0 transition" onclick="addCustomExercisePrompt()" title="직접 운동 추가" type="button">
@@ -293,7 +309,7 @@
               </button>
 <label class="py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold rounded-xl transition flex items-center justify-center gap-1.5 cursor-pointer text-center">
 <i class="fa-solid fa-upload text-lime-400"></i> 백업 복원
-                <input accept=".json" class="hidden" id="importJsonInput" onchange="importWorkoutJSON(event)" type="file"/>
+                <input accept=".json" class="hidden" id="importJsonInput" onchange="importWorkoutJSON(event)" type="file" aria-label="Importjsoninput" />
 </label>
 </div>
 </div>
@@ -434,7 +450,7 @@
 <p>✓ 최대 3대 기기(PC/스마트폰/태블릿) 평생 인증</p>
 </div>
 <div class="space-y-2">
-<input class="w-full px-4 py-3 bg-slate-950 border border-slate-700 rounded-xl text-xs font-mono text-center uppercase focus:ring-2 focus:ring-lime-400 outline-none text-white" id="liftLicenseKeyInput" placeholder="라이선스 키 입력 (예: PRO-XXXX-XXXX)" type="text"/>
+<input class="w-full px-4 py-3 bg-slate-950 border border-slate-700 rounded-xl text-xs font-mono text-center uppercase focus:ring-2 focus:ring-lime-400 outline-none text-white" id="liftLicenseKeyInput" placeholder="라이선스 키 입력 (예: PRO-XXXX-XXXX)" type="text" aria-label="라이선스 키 입력 (예: PRO-XXXX-XXXX)" />
 <button class="w-full py-3 bg-lime-500 hover:bg-lime-400 text-slate-950 text-xs font-bold rounded-xl transition" id="btnVerifyLiftLicense" onclick="verifyLiftLicenseKey()" type="button">
           라이선스 키 인증하기
         </button>
@@ -606,10 +622,10 @@
             ${set.setNum}
           </div>
           <div class="col-span-3">
-            <input type="number" step="0.5" value="${set.weight}" onchange="updateSetData(${index}, 'weight', this.value)" class="w-full text-center py-1.5 bg-slate-950 border border-slate-700 rounded-lg text-xs font-bold text-white outline-none focus:border-lime-400"/>
+            <input type="number" step="0.5" value="${set.weight}" onchange="updateSetData(${index}, 'weight', this.value)" class="w-full text-center py-1.5 bg-slate-950 border border-slate-700 rounded-lg text-xs font-bold text-white outline-none focus:border-lime-400" aria-label="number 입력 필드" />
           </div>
           <div class="col-span-3">
-            <input type="number" step="1" value="${set.reps}" onchange="updateSetData(${index}, 'reps', this.value)" class="w-full text-center py-1.5 bg-slate-950 border border-slate-700 rounded-lg text-xs font-bold text-white outline-none focus:border-lime-400"/>
+            <input type="number" step="1" value="${set.reps}" onchange="updateSetData(${index}, 'reps', this.value)" class="w-full text-center py-1.5 bg-slate-950 border border-slate-700 rounded-lg text-xs font-bold text-white outline-none focus:border-lime-400" aria-label="number 입력 필드" />
           </div>
           <div class="col-span-2 text-center font-mono font-bold text-xs text-amber-400">
             ${oneRM > 0 ? oneRM + 'k' : '-'}
