@@ -41,20 +41,56 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "웨이트 운동 기록기 | 세트·무게·1RM 계산·휴식 타이머 무료 로컬 트래커 (Lift Log Web)",
-  "url": "https://lift-log-web.enjoy-onepage.com/",
-  "description": "Hevy 무료 대안! 루틴 무제한 무료 생성, 세트별 무게·횟수 빠른 입력, Epley 1RM 자동 계산, 휴식 타이머, 100% 브라우저 IndexedDB 영구 저장 웨이트 트레이닝 일지.",
-  "applicationCategory": "UtilitiesApplication",
-  "operatingSystem": "All",
-  "browserRequirements": "Requires JavaScript. Requires HTML5.",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "KRW"
-  }
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "@id": "https://lift-log-web.enjoy-onepage.com/#webapp",
+      "name": "Lift Log Web",
+      "url": "https://lift-log-web.enjoy-onepage.com/",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "description": "Hevy 무료 대안! 루틴 무제한 무료 생성, 세트별 무게·횟수 빠른 입력, Epley 1RM 자동 계산, 휴식 타이머, 100% 브라우저 IndexedDB 영구 저장 웨이트 트레이닝 일지.",
+      "image": "https://lift-log-web.enjoy-onepage.com/og-image.png",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "KRW"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://lift-log-web.enjoy-onepage.com/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "10회 이상 고반복 세트도 1RM 계산이 정확한가요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "1RM 공식은 신경계와 근섬유 동원 특성상 3~8회 반복 시 정확도가 가장 높으며, 15회 이상은 근지구력 영향이 커 오차가 발생할 수 있습니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "1RM의 몇 %로 운동해야 근육이 가장 잘 크나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "근비대(Hypertrophy) 목적은 1RM의 65~80%(8~12회 반복), 스트렝스 목적은 85% 이상(1~5회 반복)을 추천합니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "디로드(Deload) 주기는 언제 가져야 하나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "4~6주간의 고강도 훈련 후 1주일간 평소 볼륨의 50~60%만 다루는 디로드 기간을 거쳐야 오버트레이닝과 건/인대 부상을 막을 수 있습니다."
+          }
+        }
+      ]
+    }
+  ]
 }
-</script>
+  </script>
 <meta content="https://lift-log-web.enjoy-onepage.com/og-image.png" property="og:image"/><meta content="summary_large_image" name="twitter:card"/><meta content="Lift Log Web - 광고와 루틴 제한 없는 무료 웨이트 운동 .." name="twitter:title"/><meta content="서버 전송 0%! 헬스장 오프라인에서도 즉시 기록하는 세트/랩/1RM 자동 계산 트래커." name="twitter:description"/><meta content="https://lift-log-web.enjoy-onepage.com/og-image.png" name="twitter:image"/></head>
 <body class="bg-slate-950 text-slate-100 antialiased min-h-screen flex flex-col font-sans">
 <!-- 상단 슬림 띠배너 (Top Slim Banner: 3824727725, 50~60px 고정) -->
