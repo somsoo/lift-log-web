@@ -107,7 +107,17 @@
   ]
 }
   </script>
-<meta content="https://lift-log-web.enjoy-onepage.com/og-image.png" property="og:image"/><meta content="summary_large_image" name="twitter:card"/><meta content="Lift Log Web - 광고와 루틴 제한 없는 무료 웨이트 운동 .." name="twitter:title"/><meta content="서버 전송 0%! 헬스장 오프라인에서도 즉시 기록하는 세트/랩/1RM 자동 계산 트래커." name="twitter:description"/><meta content="https://lift-log-web.enjoy-onepage.com/og-image.png" name="twitter:image"/></head>
+<meta content="https://lift-log-web.enjoy-onepage.com/og-image.png" property="og:image"/><meta content="summary_large_image" name="twitter:card"/><meta content="Lift Log Web - 광고와 루틴 제한 없는 무료 웨이트 운동 .." name="twitter:title"/><meta content="서버 전송 0%! 헬스장 오프라인에서도 즉시 기록하는 세트/랩/1RM 자동 계산 트래커." name="twitter:description"/><meta content="https://lift-log-web.enjoy-onepage.com/og-image.png" name="twitter:image"/><style id="mobile-hardening-shield">
+  @media (max-width: 640px) {
+    input, select, textarea {
+      font-size: 16px !important;
+    }
+    button, [role="button"], a.btn {
+      min-height: 42px;
+    }
+  }
+</style>
+</head>
 <body class="bg-slate-950 text-slate-100 antialiased min-h-screen flex flex-col font-sans">
 <!-- 상단 슬림 띠배너 (Top Slim Banner: 3824727725, 50~60px 고정) -->
 <div class="manual-ad-box ad-top-banner w-full max-w-5xl mx-auto my-2 text-center overflow-hidden min-h-[50px] max-h-[60px]">
@@ -643,10 +653,10 @@
             ${set.setNum}
           </div>
           <div class="col-span-3">
-            <input type="number" step="0.5" value="${set.weight}" onchange="updateSetData(${index}, 'weight', this.value)" class="w-full text-center py-1.5 bg-slate-950 border border-slate-700 rounded-lg text-xs font-bold text-white outline-none focus:border-lime-400" aria-label="number 입력 필드" />
+            <input type="number" min="0" step="0.5" value="${set.weight}" onchange="updateSetData(${index}, 'weight', this.value)" class="w-full text-center py-1.5 bg-slate-950 border border-slate-700 rounded-lg text-xs font-bold text-white outline-none focus:border-lime-400" aria-label="number 입력 필드" />
           </div>
           <div class="col-span-3">
-            <input type="number" step="1" value="${set.reps}" onchange="updateSetData(${index}, 'reps', this.value)" class="w-full text-center py-1.5 bg-slate-950 border border-slate-700 rounded-lg text-xs font-bold text-white outline-none focus:border-lime-400" aria-label="number 입력 필드" />
+            <input type="number" min="0" step="1" value="${set.reps}" onchange="updateSetData(${index}, 'reps', this.value)" class="w-full text-center py-1.5 bg-slate-950 border border-slate-700 rounded-lg text-xs font-bold text-white outline-none focus:border-lime-400" aria-label="number 입력 필드" />
           </div>
           <div class="col-span-2 text-center font-mono font-bold text-xs text-amber-400">
             ${oneRM > 0 ? oneRM + 'k' : '-'}
