@@ -183,17 +183,17 @@
 <!-- 부위 탭 & 종목 선택 -->
 <div class="space-y-3">
 <div class="flex gap-1.5 overflow-x-auto pb-1 text-xs">
-<button class="muscle-tab px-3 py-1.5 rounded-xl bg-lime-500 text-slate-950 font-bold shrink-0 transition" data-target="chest" onclick="selectMuscle('chest')" type="button">가슴</button>
-<button class="muscle-tab px-3 py-1.5 rounded-xl bg-slate-800 text-slate-300 hover:bg-slate-700 font-bold shrink-0 transition" data-target="back" onclick="selectMuscle('back')" type="button">등</button>
-<button class="muscle-tab px-3 py-1.5 rounded-xl bg-slate-800 text-slate-300 hover:bg-slate-700 font-bold shrink-0 transition" data-target="legs" onclick="selectMuscle('legs')" type="button">하체</button>
-<button class="muscle-tab px-3 py-1.5 rounded-xl bg-slate-800 text-slate-300 hover:bg-slate-700 font-bold shrink-0 transition" data-target="shoulders" onclick="selectMuscle('shoulders')" type="button">어깨</button>
-<button class="muscle-tab px-3 py-1.5 rounded-xl bg-slate-800 text-slate-300 hover:bg-slate-700 font-bold shrink-0 transition" data-target="arms" onclick="selectMuscle('arms')" type="button">팔/복근</button>
+<button class="muscle-tab px-3 py-1.5 rounded-xl bg-lime-500 text-slate-950 font-bold shrink-0 transition whitespace-nowrap" data-target="chest" onclick="selectMuscle('chest')" type="button">가슴</button>
+<button class="muscle-tab px-3 py-1.5 rounded-xl bg-slate-800 text-slate-300 hover:bg-slate-700 font-bold shrink-0 transition whitespace-nowrap" data-target="back" onclick="selectMuscle('back')" type="button">등</button>
+<button class="muscle-tab px-3 py-1.5 rounded-xl bg-slate-800 text-slate-300 hover:bg-slate-700 font-bold shrink-0 transition whitespace-nowrap" data-target="legs" onclick="selectMuscle('legs')" type="button">하체</button>
+<button class="muscle-tab px-3 py-1.5 rounded-xl bg-slate-800 text-slate-300 hover:bg-slate-700 font-bold shrink-0 transition whitespace-nowrap" data-target="shoulders" onclick="selectMuscle('shoulders')" type="button">어깨</button>
+<button class="muscle-tab px-3 py-1.5 rounded-xl bg-slate-800 text-slate-300 hover:bg-slate-700 font-bold shrink-0 transition whitespace-nowrap" data-target="arms" onclick="selectMuscle('arms')" type="button">팔/복근</button>
 </div>
 <div class="flex gap-2">
 <select class="flex-1 px-3.5 py-3 bg-slate-900 border border-slate-700 rounded-xl text-xs text-white font-bold outline-none" id="exerciseSelect" onchange="onExerciseChange()" aria-label="exerciseSelect">
 <!-- JS로 부위별 종목 주입 -->
 </select>
-<button class="px-3 py-3 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold rounded-xl shrink-0 transition" onclick="addCustomExercisePrompt()" title="직접 운동 추가" type="button">
+<button class="px-3 py-3 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold rounded-xl shrink-0 transition whitespace-nowrap" onclick="addCustomExercisePrompt()" title="직접 운동 추가" type="button">
 <i class="fa-solid fa-plus"></i>
 </button>
 </div>
@@ -206,7 +206,7 @@
 <h3 class="text-sm font-black text-white" id="currentExerciseTitle">벤치프레스 (바벨)</h3>
 <p class="text-[11px] text-slate-400" id="currentExerciseTarget">가슴 운동 · 바벨</p>
 </div>
-<button class="px-3 py-1.5 bg-lime-500 hover:bg-lime-400 text-slate-950 text-xs font-black rounded-xl transition flex items-center gap-1.5 shadow-sm" onclick="addSetRow()" type="button">
+<button class="px-3 py-1.5 bg-lime-500 hover:bg-lime-400 text-slate-950 text-xs font-black rounded-xl transition flex items-center gap-1.5 shadow-sm whitespace-nowrap" onclick="addSetRow()" type="button">
 <i class="fa-solid fa-plus"></i>
 <span>세트 추가</span>
 </button>
@@ -226,7 +226,7 @@
 <!-- 세트 간 빠른 조정 버튼 바 -->
 <div class="pt-2 flex items-center justify-between text-xs text-slate-400 border-t border-slate-800">
 <span class="text-[11px]">이전 세트 자동 복제 및 Epley 1RM 추정</span>
-<button class="text-rose-400 hover:underline text-[11px] font-semibold" onclick="clearCurrentSets()" type="button">세트 초기화</button>
+<button class="text-rose-400 hover:underline text-[11px] font-semibold whitespace-nowrap" onclick="clearCurrentSets()" type="button">세트 초기화</button>
 </div>
 </div>
 <!-- 휴식 타이머 위젯 카드 -->
@@ -241,10 +241,10 @@
 </div>
 </div>
 <div class="flex items-center gap-1.5">
-<button class="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold rounded-xl transition" onclick="startRestTimer(60)" type="button">60초</button>
-<button class="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold rounded-xl transition" onclick="startRestTimer(90)" type="button">90초</button>
-<button class="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold rounded-xl transition" onclick="startRestTimer(120)" type="button">120초</button>
-<button class="px-2.5 py-1.5 bg-rose-950/60 text-rose-300 hover:bg-rose-900/80 border border-rose-800 text-xs font-bold rounded-xl transition" onclick="stopRestTimer()" type="button">정지</button>
+<button class="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold rounded-xl transition whitespace-nowrap" onclick="startRestTimer(60)" type="button">60초</button>
+<button class="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold rounded-xl transition whitespace-nowrap" onclick="startRestTimer(90)" type="button">90초</button>
+<button class="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold rounded-xl transition whitespace-nowrap" onclick="startRestTimer(120)" type="button">120초</button>
+<button class="px-2.5 py-1.5 bg-rose-950/60 text-rose-300 hover:bg-rose-900/80 border border-rose-800 text-xs font-bold rounded-xl transition whitespace-nowrap" onclick="stopRestTimer()" type="button">정지</button>
 </div>
 </div>
 </div>
@@ -292,7 +292,7 @@
 </div>
 <!-- 운동 저장 및 세션 완료 버튼 -->
 <div class="my-4 space-y-2">
-<button class="w-full py-4 bg-lime-500 hover:bg-lime-400 text-slate-950 font-black rounded-2xl transition shadow-lg shadow-lime-950/50 flex items-center justify-center gap-2 active:scale-95 text-sm" id="btnFinishSession" onclick="finishCurrentExercise()" type="button">
+<button class="w-full py-4 bg-lime-500 hover:bg-lime-400 text-slate-950 font-black rounded-2xl transition shadow-lg shadow-lime-950/50 flex items-center justify-center gap-2 active:scale-95 text-sm whitespace-nowrap" id="btnFinishSession" onclick="finishCurrentExercise()" type="button">
 <i class="fa-solid fa-check-double"></i>
 <span id="finishBtnText">현재 운동 완료 및 세션 저장</span>
 </button>
@@ -314,13 +314,13 @@
 </div>
 <!-- 전사 공통 원클릭 결과 복사 & 바이럴 링크 -->
 <div class="pt-5 border-t border-slate-800 space-y-2.5">
-<button class="w-full py-3.5 bg-lime-500 hover:bg-lime-400 text-slate-950 font-black rounded-2xl text-xs transition flex items-center justify-center gap-2 shadow-lg shadow-lime-950/40" id="btnCopyWorkoutSummary" onclick="copyWorkoutSummary()" type="button">
+<button class="w-full py-3.5 bg-lime-500 hover:bg-lime-400 text-slate-950 font-black rounded-2xl text-xs transition flex items-center justify-center gap-2 shadow-lg shadow-lime-950/40 whitespace-nowrap" id="btnCopyWorkoutSummary" onclick="copyWorkoutSummary()" type="button">
 <i class="fa-solid fa-copy text-slate-950"></i>
 <span>운동 일지 요약 및 바로가기 클립보드 복사</span>
 </button>
 <!-- 원클릭 백업 다운로드 & 복원 -->
 <div class="grid grid-cols-2 gap-2 pt-1">
-<button class="py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold rounded-xl transition flex items-center justify-center gap-1.5" onclick="exportWorkoutJSON()" type="button">
+<button class="py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold rounded-xl transition flex items-center justify-center gap-1.5 whitespace-nowrap" onclick="exportWorkoutJSON()" type="button">
 <i class="fa-solid fa-download text-lime-400"></i> JSON 백업
               </button>
 <label class="py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold rounded-xl transition flex items-center justify-center gap-1.5 cursor-pointer text-center">
@@ -512,7 +512,53 @@
 </div>
 <p>© 2026 Lift Log Web. All rights reserved. Zero-Server Local-First Architecture.</p>
 </footer>
-</main>
+
+    <!-- 심층 가이드북 바로가기 (4-1-4 헌법 준수) -->
+    <div class="mt-8 mb-8 p-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl border border-blue-100 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <span class="inline-block px-3 py-1 bg-blue-600 text-white text-xs font-bold rounded-full mb-2">2026 실무 가이드</span>
+        <h3 class="text-lg font-bold text-gray-900">공식 기준과 상세 산식이 궁금하신가요?</h3>
+        <p class="text-xs text-gray-600 mt-1">Lift Log Web의 최신 법정 고시, 감면 혜택, 실무 체크리스트를 확인해보세요.</p>
+      </div>
+      <a href="/guides/guide.html" class="whitespace-nowrap px-5 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl shadow-md transition flex items-center gap-2 text-xs shrink-0">
+        심층 가이드북 읽기 &rarr;
+      </a>
+    </div>
+
+  
+    <!-- E-E-A-T FAQ Section (16-5 헌법 준수) -->
+    <section class="mt-8 mb-8 space-y-3">
+      <h2 class="text-xl font-bold text-gray-900 mb-4">자주 묻는 질문 (FAQ)</h2>
+      <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
+        <summary class="font-bold text-gray-800 cursor-pointer list-none flex justify-between items-center">
+          <span>입력한 데이터가 외부 서버에 저장되나요?</span>
+          <span class="text-blue-600 group-open:rotate-180 transition transform">▼</span>
+        </summary>
+        <p class="mt-3 text-gray-600 text-xs leading-relaxed">
+          아닙니다. 100% 사용자의 기기 브라우저 메모리 내에서만 연산되며, 어떠한 금융/개인 데이터도 외부로 전송되지 않습니다.
+        </p>
+      </details>
+      <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
+        <summary class="font-bold text-gray-800 cursor-pointer list-none flex justify-between items-center">
+          <span>2026년 최신 공식 기준이 반영되어 있나요?</span>
+          <summary class="text-blue-600 group-open:rotate-180 transition transform"></summary>
+        </summary>
+        <p class="mt-3 text-gray-600 text-xs leading-relaxed">
+          네, 최신 고시된 법령 및 공공 기준 요율을 상수로 반영하여 정확한 산출 결과를 제공합니다.
+        </p>
+      </details>
+      <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
+        <summary class="font-bold text-gray-800 cursor-pointer list-none flex justify-between items-center">
+          <span>결과를 다른 사람이나 카카오톡으로 공유할 수 있나요?</span>
+          <span class="text-blue-600 group-open:rotate-180 transition transform">▼</span>
+        </summary>
+        <p class="mt-3 text-gray-600 text-xs leading-relaxed">
+          '결과 복사하기' 버튼을 누르면 정돈된 요약 텍스트와 바로가기 주소가 클립보드에 자동 복사됩니다.
+        </p>
+      </details>
+    </section>
+
+  </main>
 <!-- 하단 대형 배너 (푸터 직전: 3416334507, 1:1 푸시 규격) -->
 <div class="manual-ad-box ad-bottom-banner w-full max-w-5xl mx-auto mb-8 text-center overflow-hidden">
 <ins class="adsbygoogle" data-ad-client="ca-pub-2228289204702106" data-ad-format="auto" data-ad-slot="3416334507" data-full-width-responsive="true" style="display:block"></ins>
@@ -688,10 +734,10 @@
             ${oneRM > 0 ? oneRM + 'k' : '-'}
           </div>
           <div class="col-span-2 flex items-center justify-center gap-1">
-            <button type="button" onclick="toggleSetComplete(${index})" class="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-black transition ${set.completed ? 'bg-lime-500 text-slate-950' : 'bg-slate-800 hover:bg-slate-700 text-slate-400'}">
+            <button type="button" onclick="toggleSetComplete(${index})" class="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-black transition ${set.completed ? 'bg-lime-500 text-slate-950' : 'bg-slate-800 hover:bg-slate-700 text-slate-400'} whitespace-nowrap">
               <i class="fa-solid fa-check"></i>
             </button>
-            <button type="button" onclick="removeSetRow(${index})" class="w-6 h-6 text-slate-600 hover:text-rose-400 text-[10px] transition">
+            <button type="button" onclick="removeSetRow(${index})" class="w-6 h-6 text-slate-600 hover:text-rose-400 text-[10px] transition whitespace-nowrap">
               <i class="fa-solid fa-trash"></i>
             </button>
           </div>
