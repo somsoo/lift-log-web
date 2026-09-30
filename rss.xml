@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-<channel>
-  <title>웨이트 운동 기록기 | 세트·무게·1RM 계산·휴식 타이머 무료 로컬 트래커 (Lift Log Web)</title>
-  <link>https://lift-log-web.enjoy-onepage.com/</link>
-  <description>Hevy 무료 대안! 루틴 무제한 무료 생성, 세트별 무게·횟수 빠른 입력, Epley 1RM 자동 계산, 휴식 타이머, 100% 브라우저 IndexedDB 영구 저장 웨이트 트레이닝 일지.</description>
-  <language>ko-kr</language>
-  <atom:link href="https://lift-log-web.enjoy-onepage.com/rss.xml" rel="self" type="application/rss+xml" />
-  <lastBuildDate>Tue, 29 Sep 2026 06:01:20 +0000</lastBuildDate>
-  <item>
-    <title>이용약관 | Lift Log Web</title>
-    <link>https://lift-log-web.enjoy-onepage.com/terms.html</link>
-    <guid isPermaLink="true">https://lift-log-web.enjoy-onepage.com/terms.html</guid>
-    <description>이용약관 | Lift Log Web</description>
-    <pubDate>Mon, 14 Sep 2026 12:08:16 +0900</pubDate>
-  </item>
-  <item>
-    <title>서비스 소개 &amp; 철학 | Lift Log Web - 무서버 웨이트 운동 기록기</title>
-    <link>https://lift-log-web.enjoy-onepage.com/about.html</link>
-    <guid isPermaLink="true">https://lift-log-web.enjoy-onepage.com/about.html</guid>
-    <description>서비스 소개 &amp; 철학 | Lift Log Web - 무서버 웨이트 운동 기록기</description>
-    <pubDate>Mon, 14 Sep 2026 12:08:16 +0900</pubDate>
-  </item>
-  <item>
-    <title>개인정보처리방침 (로컬 보증서) | Lift Log Web</title>
-    <link>https://lift-log-web.enjoy-onepage.com/privacy.html</link>
-    <guid isPermaLink="true">https://lift-log-web.enjoy-onepage.com/privacy.html</guid>
-    <description>개인정보처리방침 (로컬 보증서) | Lift Log Web</description>
-    <pubDate>Mon, 14 Sep 2026 12:08:16 +0900</pubDate>
-  </item>
-</channel>
+  <channel>
+    <title>웨이트 운동 기록기 | 세트·무게·1RM 계산·휴식 타이머</title>
+    <link>https://lift-log-web.enjoy-onepage.com/</link>
+    <description>Hevy 무료 대안 운동 일지. 루틴 무제한, 세트별 무게·횟수 입력, 1RM 자동 계산, 휴식 타이머를 브라우저에 저장합니다.</description>
+    <language>ko-kr</language>
+    <lastBuildDate>Thu, 01 Oct 2026 03:32:39 +0900</lastBuildDate>
+    <atom:link href="https://lift-log-web.enjoy-onepage.com/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>웨이트 운동 기록기 | 세트·무게·1RM 계산·휴식 타이머</title>
+      <link>https://lift-log-web.enjoy-onepage.com/</link>
+      <guid isPermaLink="true">https://lift-log-web.enjoy-onepage.com/</guid>
+      <description>Hevy 무료 대안 운동 일지. 루틴 무제한, 세트별 무게·횟수 입력, 1RM 자동 계산, 휴식 타이머를 브라우저에 저장합니다.</description>
+      <pubDate>Thu, 01 Oct 2026 03:32:39 +0900</pubDate>
+    </item>
+    <item>
+      <title>개인정보처리방침 (로컬 보증서) | Lift Log Web</title>
+      <link>https://lift-log-web.enjoy-onepage.com/privacy.html</link>
+      <guid isPermaLink="true">https://lift-log-web.enjoy-onepage.com/privacy.html</guid>
+      <description>개인정보처리방침 (로컬 보증서) | Lift Log Web</description>
+      <pubDate>Mon, 14 Sep 2026 12:08:16 +0900</pubDate>
+    </item>
+    <item>
+      <title>이용약관 | Lift Log Web</title>
+      <link>https://lift-log-web.enjoy-onepage.com/terms.html</link>
+      <guid isPermaLink="true">https://lift-log-web.enjoy-onepage.com/terms.html</guid>
+      <description>이용약관 | Lift Log Web</description>
+      <pubDate>Mon, 14 Sep 2026 12:08:16 +0900</pubDate>
+    </item>
+  </channel>
 </rss>
