@@ -9,10 +9,10 @@
 <link href="apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/><meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>웨이트 운동 기록기 | 세트·무게·1RM 계산·휴식 타이머</title>
-<meta content="Hevy 무료 대안 운동 일지. 루틴 무제한, 세트별 무게·횟수 입력, 1RM 자동 계산, 휴식 타이머를 브라우저에 저장합니다." name="description"/>
+<meta content="무료 웨이트 운동 일지. 부위별 운동의 세트마다 무게·횟수를 적고, 1RM 추정치와 60·90·120초 휴식 타이머를 쓰며, 기록은 이 브라우저에 저장합니다." name="description"/>
 <link href="https://lift-log-web.enjoy-onepage.com/" rel="canonical"/>
 <meta content="Lift Log Web - 광고와 루틴 제한 없는 무료 웨이트 운동 .." property="og:title"/>
-<meta content="서버 전송 0%! 헬스장 오프라인에서도 즉시 기록하는 세트/랩/1RM 자동 계산 트래커." property="og:description"/>
+<meta content="헬스장에서 세트별 무게·횟수를 바로 적고 1RM 추정치를 계산하는 운동 기록기입니다." property="og:description"/>
 <meta content="website" property="og:type"/>
   <meta property="og:locale" content="ko_KR">
 <meta content="https://lift-log-web.enjoy-onepage.com/" property="og:url"/>
@@ -64,7 +64,7 @@
       "applicationCategory": "UtilityApplication",
       "operatingSystem": "All",
       "browserRequirements": "Requires JavaScript. Requires HTML5.",
-      "description": "Hevy 무료 대안! 루틴 무제한 무료 생성, 세트별 무게·횟수 빠른 입력, Epley 1RM 자동 계산, 휴식 타이머, 100% 브라우저 IndexedDB 영구 저장 웨이트 트레이닝 일지.",
+      "description": "무료 웨이트 운동 일지. 부위별 운동의 세트마다 무게·횟수를 적고, 1RM 추정치와 60·90·120초 휴식 타이머를 쓰며, 기록은 이 브라우저에 저장합니다.",
       "image": "https://lift-log-web.enjoy-onepage.com/og-image.png",
       "offers": {
         "@type": "Offer",
@@ -105,7 +105,7 @@
   ]
 }
   </script>
-<meta content="https://lift-log-web.enjoy-onepage.com/og-image.png" property="og:image"/><meta content="summary_large_image" name="twitter:card"/><meta content="Lift Log Web - 광고와 루틴 제한 없는 무료 웨이트 운동 .." name="twitter:title"/><meta content="서버 전송 0%! 헬스장 오프라인에서도 즉시 기록하는 세트/랩/1RM 자동 계산 트래커." name="twitter:description"/><meta content="https://lift-log-web.enjoy-onepage.com/og-image.png" name="twitter:image"/><style id="mobile-hardening-shield">
+<meta content="https://lift-log-web.enjoy-onepage.com/og-image.png" property="og:image"/><meta content="summary_large_image" name="twitter:card"/><meta content="Lift Log Web - 광고와 루틴 제한 없는 무료 웨이트 운동 .." name="twitter:title"/><meta content="헬스장에서 세트별 무게·횟수를 바로 적고 1RM 추정치를 계산하는 운동 기록기입니다." name="twitter:description"/><meta content="https://lift-log-web.enjoy-onepage.com/og-image.png" name="twitter:image"/><style id="mobile-hardening-shield">
   /* 모바일 한글 단어 단위 줄바꿈 보존 & 버튼 텍스트 단일행 쉴드 */
   body, h1, h2, h3, h4, p, span, label {
     word-break: keep-all;
@@ -147,7 +147,7 @@
 <h1 class="text-xl sm:text-2xl font-extrabold text-white tracking-tight">Lift Log Web</h1>
 <span class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-lime-950 text-lime-400 border border-lime-800">무제한 루틴 무료</span>
 </div>
-<p class="text-xs sm:text-sm text-slate-400 mt-0.5">Hevy 구독 피로 없는 100% 브라우저 로컬 웨이트 트레이닝 일지</p>
+<p class="text-xs sm:text-sm text-slate-400 mt-0.5">브라우저에 저장되는 웨이트 트레이닝 일지</p>
 </div>
 </div>
 <!-- 상단 액션 버튼 그룹 (PRO 모달 & 배지) -->
@@ -302,7 +302,7 @@
 <div class="py-2 space-y-2 font-mono text-xs border-t border-slate-800">
 <div class="flex justify-between text-slate-400">
 <span>STORAGE ENGINE:</span>
-<span class="text-lime-400 font-bold">100% 브라우저 IndexedDB</span>
+<span class="text-lime-400 font-bold">브라우저 localStorage</span>
 </div>
 <div class="flex justify-between text-slate-400">
 <span>PRIVACY STATUS:</span>
@@ -310,7 +310,7 @@
 </div>
 <div class="flex justify-between text-slate-400">
 <span>ROUTINE CAPACITY:</span>
-<span class="text-white font-bold">무제한 무료 (Hevy 3개 제한 없음)</span>
+<span class="text-white font-bold">무제한 무료</span>
 </div>
 </div>
 <!-- 전사 공통 원클릭 결과 복사 & 바이럴 링크 -->
@@ -862,7 +862,7 @@
       let totalSets = document.getElementById('metricTotalSets').textContent;
       let max1RM = document.getElementById('metricMax1RM').textContent;
 
-      let text = `[Lift Log Web - 웨이트 운동 일지]\n총 운동 볼륨: ${totalVol}\n수행 세트수: ${totalSets}\n최고 1RM(추정): ${max1RM}\n보관: 100% 로컬 IndexedDB 영구 저장\n\n👉 무료 무제한 루틴 운동 기록기 바로가기: https://lift-log-web.enjoy-onepage.com`;
+      let text = `[Lift Log Web - 웨이트 운동 일지]\n총 운동 볼륨: ${totalVol}\n수행 세트수: ${totalSets}\n최고 1RM(추정): ${max1RM}\n보관: 이 브라우저(localStorage)\n\n👉 무료 무제한 루틴 운동 기록기 바로가기: https://lift-log-web.enjoy-onepage.com`;
 
       navigator.clipboard.writeText(text).then(() => {
         showToastNotification('운동 일지 요약 및 바로가기가 클립보드에 복사되었습니다! 💪');
